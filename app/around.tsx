@@ -1,35 +1,98 @@
 'use client';
-import { useState } from 'react';
-import { ArrowUpRight, MapPin, Car, Bike, Compass, Plus } from 'lucide-react';
+
+import { useEffect, useState } from 'react';
+import { MapPin, Share2, Expand, Copy, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
+import places from './around-data.json';
 
-const places = [
-  {name:'Crocodile Park', image:'crocodile', kind:'Wildlife', text:'Observe crocodiles from a viewing platform.'},
-  {name:'Moulangi Eco Park', image:'moulangi', kind:'Riverside', text:'A riverside stop for an easy afternoon.'},
-  {name:'E-bike tour of Dandeli', image:'cycles', kind:'Explore', text:'See the town on two wheels.'},
-  {name:'Phansoli Elephant Camp', image:'elephants', kind:'Wildlife', text:'A chance to learn about rescued elephants.'},
-  {name:'Jungle safari', image:'safari', kind:'Wildlife', text:'Forest exploration; wildlife sightings are never guaranteed.'},
-  {name:'Supa backwaters', image:'backwaters', kind:'Riverside', text:'Open water and a sunset walk.'},
-  {name:'Hornbill Resort day visit', image:'hornbill', kind:'Riverside', text:'Spend a day beside the Kali.'},
-  {name:'Kumbarwada village', image:'village', kind:'Explore', text:'Discover village life and local crafts.'},
-  {name:'Akala Gavi caves', image:'akala', kind:'Trails & caves', text:'A forest trek with underground exploration.'},
-  {name:'Mahamane caves', image:'mahamane', kind:'Trails & caves', text:'A longer trail for curious explorers.'},
-  {name:'Ulavi caves & Sathodi Falls', image:'waterfall', kind:'Trails & caves', text:'Make time for caves and a waterfall.'},
-];
+type Place = (typeof places)[number];
+const source = 'https://junglithenomad.com/experiences/around-campus/';
 
-export function AroundDandeli(){
-  const [filter,setFilter]=useState('All experiences');
-  const [photo,setPhoto]=useState<(typeof places)[number]|null>(null);
-  const visible=places.filter(p=>filter==='All experiences'||p.kind===filter);
-  return <section className="section around" id="around">
-    <div className="section-heading"><div><div className="eyebrow">BEYOND THE USUAL · AROUND DANDELI</div><h2>There’s more around<br/><em>every bend.</em></h2></div><p>A little inspiration for your itinerary.<br/>Ask our team what’s possible for your dates.</p></div>
-    <div className="filters" aria-label="Filter destinations">{['All experiences','Riverside','Wildlife','Trails & caves','Explore'].map(f=><Button key={f} variant="ghost" className={f===filter?'filter active':'filter'} aria-pressed={filter===f} onClick={()=>setFilter(f)}>{f}</Button>)}</div>
-    <p className="result-count" aria-live="polite">{visible.length} places to explore</p>
-    <div className="activity-grid destination-grid">{visible.map(p=><article className="activity-card" key={p.name}><div className="card-image"><button className="image-zoom" onClick={()=>setPhoto(p)} aria-label={'View photo of '+p.name}><img src={'/images/'+p.image+'.jpg'} alt={p.name} loading="lazy"/><span className="zoom-mark"><Plus size={17}/></span></button><a className="map-pin" href={'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p.name+' Dandeli Karnataka')} target="_blank" rel="noreferrer" aria-label={'Find '+p.name+' on map'}><MapPin size={16}/></a></div><div className="card-body"><span className="category">{p.kind}</span><h3>{p.name}</h3><p>{p.text}</p><div className="destination-bottom"><span>Plan with our team</span><a href="https://wa.me/916363066331?text=Hello%20Dandeli%20Expedition" target="_blank" rel="noreferrer" aria-label={'Enquire about '+p.name}><ArrowUpRight size={20}/></a></div></div></article>)}</div>
-    <p className="price-note">Destination inspiration, not a confirmed package. Routes, permissions, transport, entry charges, and availability must be confirmed. Destination photography: <a href="https://junglithenomad.com/experiences/around-campus/" target="_blank" rel="noreferrer">Jungli the Nomad</a>.</p>
-    <div className="transport"><div><div className="eyebrow">GETTING AROUND</div><h3>Your pace. Your way.</h3><p>Need help connecting the dots? Ask about transport for your itinerary.</p></div><div className="transport-options">{[[Bike,'Scooter rental'],[Compass,'Local auto'],[Car,'A cab for the day']].map(([Icon,name])=>{const Symbol=Icon as typeof Car;return <a key={String(name)} href="https://wa.me/message/5GBA5LN4IEP2E1" target="_blank" rel="noreferrer"><Symbol size={22}/><span>{String(name)}<small>Ask for availability</small></span><ArrowUpRight size={18}/></a>})}</div></div>
-    <aside className="before-you-go"><h3>Before you head out</h3><div><p><strong>Check the season.</strong> Weather and river conditions can change your plans. Confirm what’s operating before travelling.</p><p><strong>Plan ahead.</strong> Ask about required permissions, guides, equipment, age restrictions, and transport when you enquire.</p><p><strong>Keep it clear.</strong> Confirm the total price, inclusions, pickup point, and cancellation terms before paying.</p></div></aside>
-    <Dialog open={photo!==null} onOpenChange={open=>{if(!open)setPhoto(null)}}><DialogContent className="photo-dialog"><DialogTitle>{photo?.name}</DialogTitle><DialogDescription>Destination inspiration for your Dandeli itinerary.</DialogDescription>{photo&&<img src={'/images/'+photo.image+'.jpg'} alt={photo.name}/>}</DialogContent></Dialog>
-  </section>
+function Gallery({ place, initial = 0, expanded = false, onExpand }: { place: Place; initial?: number; expanded?: boolean; onExpand?: (index: number) => void }) {
+  const [api, setApi] = useState<CarouselApi>();
+  const [index, setIndex] = useState(initial);
+  useEffect(() => {
+    if (!api) return;
+    const update = () => setIndex(api.selectedScrollSnap());
+    update();
+    api.on('select', update);
+    return () => { api.off('select', update); };
+  }, [api]);
+  return <Carousel setApi={setApi} opts={{ loop: place.images.length > 1, startIndex: initial }} className={expanded ? 'experience-gallery expanded-gallery' : 'experience-gallery'} aria-label={`${place.name} photos`}>
+    <CarouselContent>{place.images.map((image, i) => <CarouselItem key={image}>
+      {expanded ? <img src={image} alt={`${place.name} — photo ${i + 1}`} loading={i === initial ? 'eager' : 'lazy'} /> : <button className="image-zoom" onClick={() => onExpand?.(i)} aria-label={`Enlarge ${place.name} photo ${i + 1}`}><img src={image} alt={`${place.name} — photo ${i + 1}`} loading="lazy" /><span className="zoom-mark"><Expand size={16}/></span></button>}
+    </CarouselItem>)}</CarouselContent>
+    {place.images.length > 1 && <><CarouselPrevious className="gallery-prev"/><CarouselNext className="gallery-next"/></>}
+    <div className="gallery-pagination"><span aria-live="polite">{index + 1} / {place.images.length}</span><div className="gallery-dots">{place.images.map((image, i) => <button key={image} type="button" aria-label={`Show photo ${i + 1} of ${place.name}`} aria-current={i === index ? 'true' : undefined} className={i === index ? 'selected' : ''} onClick={() => api?.scrollTo(i)}/>)}</div></div>
+  </Carousel>;
 }
+
+function ShareButton({ place }: { place: Place }) {
+  const [photo, setPhoto] = useState<File>();
+  const [fallback, setFallback] = useState(false);
+  const [shareText, setShareText] = useState('');
+  const [shareUrl, setShareUrl] = useState('');
+  const [status, setStatus] = useState('');
+  useEffect(() => {
+    if (!navigator.canShare) return;
+    const controller = new AbortController();
+    fetch(place.images[0], { signal: controller.signal }).then(response => {
+      if (!response.ok) throw new Error('Photo unavailable');
+      return response.blob();
+    }).then(blob => setPhoto(new File([blob], `${place.id}.jpg`, { type: blob.type || 'image/jpeg' }))).catch(() => {});
+    return () => controller.abort();
+  }, [place]);
+  async function share() {
+    const url = new URL(window.location.pathname, window.location.origin);
+    url.searchParams.set('activity', place.id);
+    const text = `🌿 *${place.name}* 🌿\n${place.badge}\n\n${place.description}\n\n${place.facts.join('\n')}\n\nListed source rates; confirm availability and final cost.\n📍 More info & photos: ${url.href}`;
+    setShareText(text); setShareUrl(url.href); setStatus('');
+    if (!navigator.share) { window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener,noreferrer'); return; }
+    try {
+      if (photo && navigator.canShare?.({ files: [photo] })) {
+        await navigator.share({ title: place.name, text, files: [photo] });
+      } else {
+        await navigator.share({ title: place.name, text, url: url.href });
+      }
+    } catch (error) {
+      if (!(error instanceof Error && error.name === 'AbortError')) setFallback(true);
+    }
+  }
+  return <><Button variant="ghost" size="icon" className="experience-share" title="Share on WhatsApp" aria-label={`Share ${place.name} on WhatsApp`} onClick={share}><Share2 size={15}/></Button>
+    <Dialog open={fallback} onOpenChange={setFallback}><DialogContent className="share-dialog"><DialogTitle>Share {place.name}</DialogTitle><DialogDescription>Share the details, exact listed rates and a link to this gallery. Photo attachments are available on devices that support native file sharing.</DialogDescription><a className="cta" href={`https://wa.me/?text=${encodeURIComponent(shareText)}`} target="_blank" rel="noreferrer"><MessageCircle size={18}/> Share on WhatsApp</a><Button variant="outline" onClick={async () => { try { await navigator.clipboard.writeText(shareUrl); setStatus('Link copied.'); } catch { setStatus('Copy the link below to share.'); } }}><Copy size={16}/> Copy link</Button><input aria-label="Experience share link" readOnly value={shareUrl} onFocus={event => event.target.select()}/><p role="status">{status}</p></DialogContent></Dialog>
+  </>;
+}
+
+export function AroundDandeli() {
+  const [filter, setFilter] = useState('All experiences');
+  const [photo, setPhoto] = useState<{ place: Place; index: number } | null>(null);
+  const [highlight, setHighlight] = useState('');
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get('activity');
+    if (!id || !places.some(place => place.id === id)) return;
+    setHighlight(id);
+    const timer = window.setTimeout(() => document.getElementById(id)?.scrollIntoView({ block: 'center', behavior: 'instant' }), 200);
+    return () => window.clearTimeout(timer);
+  }, []);
+  const visible = places.filter(place => filter === 'All experiences' || place.kind === filter);
+  return <section className="section around" id="around">
+    <div className="section-heading"><div><div className="eyebrow">AROUND DANDELI · THE COMPLETE COLLECTION</div><h2>Every outing.<br/><em>Every detail.</em></h2></div><p>13 experiences. 3 transport options.<br/>Original galleries and exact listed rates.</p></div>
+    <p className="source-notice">Photos and listing information from <a href={source} target="_blank" rel="noreferrer">Jungli’s Around Campus collection</a>. Travel times start at Jungli, not Dandeli Expedition. The source’s guide arrangements, recommendations and rates are shown for reference; confirm your booking with our team.</p>
+    <div className="filters" aria-label="Filter experiences">{['All experiences', 'Riverside', 'Wildlife', 'River adventures', 'Trails & caves', 'Explore', 'Transport'].map(kind => <Button key={kind} variant="ghost" className={kind === filter ? 'filter active' : 'filter'} aria-pressed={kind === filter} onClick={() => setFilter(kind)}>{kind}</Button>)}</div>
+    <p className="result-count" aria-live="polite">{visible.length} listings · {visible.reduce((sum, place) => sum + place.images.length, 0)} photos</p>
+    {['Nearby', 'Further adventures', 'Transport'].map(group => {
+      const groupPlaces = visible.filter(place => place.group === group);
+      if (!groupPlaces.length) return null;
+      return <div className="experience-group" key={group}><h3 className="experience-group-title">{group === 'Nearby' ? 'Nearby · 0–45 minutes from Jungli' : group === 'Transport' ? 'Rentals & getting around' : 'Further adventures'}</h3><div className="activity-grid destination-grid">{groupPlaces.map(place => <article className={`activity-card experience-card${highlight === place.id ? ' shared-highlight' : ''}`} id={place.id} key={place.id}>
+        <div className="experience-media"><Gallery place={place} onExpand={index => setPhoto({ place, index })}/><ShareButton place={place}/>{place.links[0] && <a className="experience-map" href={place.links[0]} target="_blank" rel="noreferrer" aria-label={`Find ${place.name} on map`}><MapPin size={17}/></a>}</div>
+        <div className="card-body"><div className="experience-meta"><span className="category">{place.kind}</span><span className="experience-duration">{place.badge}</span></div><h3>{place.name}</h3>{place.recommended && <span className="community-pick">Recommended by Jungli’s community</span>}<p>{place.description}</p><dl className="experience-facts">{place.facts.map(fact => { const colon = fact.indexOf(':'); return <div key={fact}><dt>{fact.slice(0, colon)}</dt><dd>{fact.slice(colon + 1).trim()}</dd></div>; })}</dl><a className="experience-enquire" href={`https://wa.me/916363066331?text=${encodeURIComponent(`Hello Dandeli Expedition, I would like to enquire about ${place.name}. Please confirm availability, the listed rates and inclusions.`)}`} target="_blank" rel="noreferrer">Enquire about this experience ↗</a></div>
+      </article>)}</div></div>;
+    })}
+    <aside className="before-you-go"><h3>Before you book</h3><ul className="experience-notes"><li>The source’s guided rates include Mohan or a member of his team. Confirm the guide arrangement for your booking.</li><li>Group minimums apply to the rates that include transport.</li><li>The published rates are estimates and may increase for holidays or long weekends.</li><li>Permits, guides and transport require advance booking.</li><li>Heavy monsoon conditions can suspend some activities.</li><li>For an independent visit, use the original map links and arrange your own vehicle or cab.</li></ul></aside>
+    <aside className="source-guide"><img src="/images/around-campus/mohan.jpg" alt="Mohan, Jungli’s Head of Adventure, in the Himalayas" loading="lazy"/><div><div className="eyebrow">MEET THE GUIDE · FROM THE SOURCE</div><h3>Mohan, Jungli’s Head of Adventure</h3><p>Jungli identifies Mohan as its local adventure lead. Raised near these forests after his grandfather came from Nepal to work at the factory, he has trekked to Everest Base Camp and undertaken mountaineering and rescue training. The source attributes guided outings to him or his team.</p><a className="text-link" href="https://wa.me/918050675009" target="_blank" rel="noreferrer">Contact Mohan at Jungli ↗</a></div></aside>
+    <Dialog open={photo !== null} onOpenChange={open => { if (!open) setPhoto(null); }}><DialogContent className="photo-dialog"><DialogTitle>{photo?.place.name}</DialogTitle><DialogDescription>Original gallery · Swipe or use the arrows to browse all photos.</DialogDescription>{photo && <Gallery key={`${photo.place.id}-${photo.index}`} place={photo.place} initial={photo.index} expanded/>}</DialogContent></Dialog>
+  </section>;
+}
+

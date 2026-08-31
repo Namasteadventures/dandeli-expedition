@@ -1,0 +1,386 @@
+[
+  {
+    "id": "crocodile-park",
+    "name": "Crocodile Park",
+    "images": [
+      "/images/around-campus/croc-park-1.jpg"
+    ],
+    "facts": [
+      "Drive time from Jungli: 10 mins",
+      "Without transport: ₹750/person",
+      "With transport: ₹1,250/person",
+      "Minimum: ₹5,000 (allows 4 pax)"
+    ],
+    "badge": "1 hr",
+    "links": [
+      "https://maps.app.goo.gl/8XTCwmxTQB3iPKBr9"
+    ],
+    "recommended": false,
+    "description": "Watch crocodiles from a dedicated viewing platform at a safe distance.",
+    "kind": "Wildlife",
+    "group": "Nearby"
+  },
+  {
+    "id": "moulangi-eco-park",
+    "name": "Moulangi Eco Park",
+    "images": [
+      "/images/around-campus/20251012_1356520.jpg",
+      "/images/around-campus/20251012_140549.jpg",
+      "/images/around-campus/moulangi-5.jpg",
+      "/images/around-campus/moulangi-2.jpg",
+      "/images/around-campus/moulangi-3.jpg",
+      "/images/around-campus/moulangi-4.jpg",
+      "/images/around-campus/moulangi-6.jpg",
+      "/images/around-campus/moulangi-7.jpg",
+      "/images/around-campus/moulangi-8.jpg",
+      "/images/around-campus/moulangi-9.jpg"
+    ],
+    "facts": [
+      "Drive time from Jungli: 25 mins",
+      "Without transport: ₹500/person",
+      "With transport: ₹1,000/person",
+      "Minimum: ₹4,000 (allows 4 pax)"
+    ],
+    "badge": "1-2 hrs",
+    "links": [
+      "https://maps.app.goo.gl/VWhKKEXE23m6bJzo9"
+    ],
+    "recommended": true,
+    "description": "Riverside swimming, picnic areas and forest surroundings, with go-karting and buggy driving available on site. Entry: ₹50. Expect busier weekends during September–February.",
+    "kind": "Riverside",
+    "group": "Nearby"
+  },
+  {
+    "id": "e-bike-tour-of-dandeli-town",
+    "name": "E-Bike Tour of Dandeli Town",
+    "images": [
+      "/images/around-campus/ecycle-tour-3.jpg",
+      "/images/around-campus/ecycle-tour-2.jpg",
+      "/images/around-campus/ecycle-tour-1.jpg"
+    ],
+    "facts": [
+      "Drive time from Jungli: 30 mins",
+      "Without transport: ₹1,500/person",
+      "With transport: Guided, just cycles, no transport required",
+      "Minimum: ₹1,500/person (allows 1 pax)"
+    ],
+    "badge": "1-2 hrs",
+    "links": [
+      "https://maps.app.goo.gl/d6FucvTCMeN7Gc7Q6"
+    ],
+    "recommended": false,
+    "description": "A guided electric-cycle ride through the campus and Dandeli town, covering industrial history, useful local stops and Crocodile Park.",
+    "kind": "Explore",
+    "group": "Nearby"
+  },
+  {
+    "id": "phansoli-elephant-camp",
+    "name": "Phansoli Elephant Camp",
+    "images": [
+      "/images/around-campus/elephant-camp-3.jpg",
+      "/images/around-campus/elephant-camp-7.jpg",
+      "/images/around-campus/elephant-camp-4.jpg",
+      "/images/around-campus/elephant-camp-5.jpg",
+      "/images/around-campus/elephant-camp-6.jpg",
+      "/images/around-campus/elephant-camp-9.jpg",
+      "/images/around-campus/elephant-camp-2.jpg",
+      "/images/around-campus/elephant-camp-1.jpg"
+    ],
+    "facts": [
+      "Drive time from Jungli: 35 mins",
+      "Without transport: ₹850/person",
+      "With transport: ₹1,350/person",
+      "Minimum: ₹5,400 (allows 4 pax)"
+    ],
+    "badge": "2-3 hrs",
+    "links": [
+      "https://maps.app.goo.gl/TZn4i1sch9ySC9hB6"
+    ],
+    "recommended": true,
+    "description": "A camp for rescued elephants, including animals injured in falls or fights that cannot return to independent life in the wild. Plan around feeding times. Entry: ₹50.",
+    "kind": "Wildlife",
+    "group": "Nearby"
+  },
+  {
+    "id": "jungle-safari",
+    "name": "Jungle Safari",
+    "images": [
+      "/images/around-campus/safari-1.jpg",
+      "/images/around-campus/safari-2.jpg"
+    ],
+    "facts": [
+      "Drive time from Jungli: 35 mins",
+      "Without transport: ₹1,000/person",
+      "With transport: ₹1,500/person",
+      "Minimum: ₹6,000 (allows 4 pax)"
+    ],
+    "badge": "2-3 hrs",
+    "links": [
+      "https://maps.app.goo.gl/4mDaFQi5EyYEqDES8"
+    ],
+    "recommended": false,
+    "description": "A forest drive with possible sightings of deer, birds, black panthers, bears and wild elephants. The source reports fewer sightings in recent years; wildlife sightings are not guaranteed.",
+    "kind": "Wildlife",
+    "group": "Nearby"
+  },
+  {
+    "id": "sunset-hike-to-backwaters",
+    "name": "Sunset Hike to Backwaters",
+    "images": [
+      "/images/around-campus/backwaters-5.jpg",
+      "/images/around-campus/backwaters-4.jpg",
+      "/images/around-campus/backwaters-1.jpg",
+      "/images/around-campus/backwaters-2.jpg",
+      "/images/around-campus/backwaters-3.jpg"
+    ],
+    "facts": [
+      "Drive time from Jungli: 40 mins",
+      "Without transport: ₹750/person",
+      "With transport: ₹1,250/person",
+      "Minimum: ₹5,000 (allows 4 pax)"
+    ],
+    "badge": "3 hrs",
+    "links": [
+      "https://maps.app.goo.gl/279A3BSCnq39kpiq8"
+    ],
+    "recommended": true,
+    "description": "A 15-minute walk to a sunset viewpoint beside the Supa Dam backwaters. Water levels are higher after the monsoon; summer can expose the lakebed, where buffalo herds may appear.",
+    "kind": "Riverside",
+    "group": "Nearby"
+  },
+  {
+    "id": "white-water-rafting",
+    "name": "White Water Rafting",
+    "images": [
+      "/images/around-campus/img-20241216-wa0066.jpg",
+      "/images/around-campus/rafting-1.jpg",
+      "/images/around-campus/rafting-2.jpg"
+    ],
+    "facts": [
+      "Drive time from Jungli: 45 mins",
+      "Without transport: ₹1,750 to ₹2,300/person",
+      "With transport: ₹2,250 to ₹2,800/person",
+      "Minimum: ₹9,000 to ₹11,200 (allows 4 pax)"
+    ],
+    "badge": "2-4 hrs",
+    "links": [
+      "https://maps.app.goo.gl/tYpBt2io4SjEzwav5"
+    ],
+    "recommended": true,
+    "description": "Raft the Kali River on a 5km or 11km route with Grade 2 and 3 rapids. The source lists operation outside the July–August monsoon period.",
+    "kind": "River adventures",
+    "group": "Further adventures"
+  },
+  {
+    "id": "white-water-kayaking",
+    "name": "White Water Kayaking",
+    "images": [
+      "/images/around-campus/kayaking-2.jpg",
+      "/images/around-campus/kayaking-1.jpg",
+      "/images/around-campus/kayaking-5.jpg",
+      "/images/around-campus/kayaking-3.jpg",
+      "/images/around-campus/kayaking-4.jpg"
+    ],
+    "facts": [
+      "Drive time from Jungli: 45 mins",
+      "Without transport: ₹2,300/person",
+      "With transport: ₹2,925/person",
+      "Minimum: ₹11,700 (allows 4 pax)"
+    ],
+    "badge": "2-4 hrs",
+    "links": [
+      "https://maps.app.goo.gl/tYpBt2io4SjEzwav5"
+    ],
+    "recommended": false,
+    "description": "Guided instruction in paddling a kayak through moving water. Be prepared to get wet and potentially fall into the river.",
+    "kind": "River adventures",
+    "group": "Further adventures"
+  },
+  {
+    "id": "hornbill-resort-day-package",
+    "name": "Hornbill Resort Day Package",
+    "images": [
+      "/images/around-campus/hornbill-river-resort.jpg",
+      "/images/around-campus/20251012_140922.jpg",
+      "/images/around-campus/hornbill-5.jpg",
+      "/images/around-campus/hornbill-4.jpg",
+      "/images/around-campus/hornbill-2.jpg",
+      "/images/around-campus/hornbill-3.jpg",
+      "/images/around-campus/hornbill-6.jpg",
+      "/images/around-campus/hornbill-1.jpg"
+    ],
+    "facts": [
+      "Drive time from Jungli: 45 mins",
+      "Without transport: ₹1,400/person",
+      "With transport: ₹1,900/person",
+      "Minimum: ₹7,600 (allows 4 pax)"
+    ],
+    "badge": "Half or full day",
+    "links": [
+      "https://maps.app.goo.gl/q3RkVPJAYCBFp3Ht6"
+    ],
+    "recommended": false,
+    "description": "A Kali River resort visit with swimming, optional kayaking and lunch by the river. Zip-lining, zorbing and quad biking cost extra.",
+    "kind": "Riverside",
+    "group": "Further adventures"
+  },
+  {
+    "id": "kumbarwada-village-day-trip",
+    "name": "Kumbarwada Village Day Trip",
+    "images": [
+      "/images/around-campus/kumbarwada-2.jpg",
+      "/images/around-campus/kumbarwada-3.jpg",
+      "/images/around-campus/kumbarwada-4.jpg",
+      "/images/around-campus/kumbarwada-5.jpg",
+      "/images/around-campus/kumbarwada-6.jpg",
+      "/images/around-campus/kumbarwada-7.jpg",
+      "/images/around-campus/kumbarwada-8.jpg",
+      "/images/around-campus/kumbarwada-9.jpg",
+      "/images/around-campus/kumbarwada-10.jpg",
+      "/images/around-campus/kumbarwada-11.jpg",
+      "/images/around-campus/kumbarwada-12.jpg",
+      "/images/around-campus/kumbarwada-13.jpg",
+      "/images/around-campus/kumbarwada-1.jpg"
+    ],
+    "facts": [
+      "Drive time from Jungli: 75 mins",
+      "Without transport: ₹750/person",
+      "With transport: ₹1,375/person",
+      "Minimum: ₹5,500 (allows 4 pax)"
+    ],
+    "badge": "Full day",
+    "links": [
+      "https://maps.app.goo.gl/TeyuU6uZZN6GzSWG9"
+    ],
+    "recommended": true,
+    "description": "Visit Swayam to see honey production and coir-mat weaving, followed by swimming and a packed lunch at the Orchidarium among rare orchids. Mobile reception is very limited.",
+    "kind": "Explore",
+    "group": "Further adventures"
+  },
+  {
+    "id": "akala-gavi-caves-hike",
+    "name": "Akala Gavi Caves Hike",
+    "images": [
+      "/images/around-campus/akala-gavi-1.jpg",
+      "/images/around-campus/akala-gavi-2.jpg"
+    ],
+    "facts": [
+      "Drive time from Jungli: 90 mins",
+      "Without transport: ₹1,750/person",
+      "With transport: ₹2,375/person",
+      "Minimum: ₹9,500 (allows 4 pax)"
+    ],
+    "badge": "Full day",
+    "links": [
+      "https://maps.app.goo.gl/FskboeQmb33Z6tEc9"
+    ],
+    "recommended": false,
+    "description": "A forest hike followed by exploration of underground caves. The source names Mohan as the guide.",
+    "kind": "Trails & caves",
+    "group": "Further adventures"
+  },
+  {
+    "id": "mahamane-caves-hike",
+    "name": "Mahamane Caves Hike",
+    "images": [
+      "/images/around-campus/mahamane-2.jpg",
+      "/images/around-campus/mahamane-1.jpg",
+      "/images/around-campus/mahamane-6.jpg",
+      "/images/around-campus/mahamane-5.jpg",
+      "/images/around-campus/mahamane-3.jpg",
+      "/images/around-campus/mahamane-7.jpg",
+      "/images/around-campus/mahamane-8.jpg"
+    ],
+    "facts": [
+      "Drive time from Jungli: 90 mins",
+      "Without transport: ₹2,750/person",
+      "With transport: ₹3,375/person",
+      "Minimum: ₹13,500 (allows 4 pax)"
+    ],
+    "badge": "Full day (8km trek)",
+    "links": [
+      "https://maps.app.goo.gl/FskboeQmb33Z6tEc9"
+    ],
+    "recommended": true,
+    "description": "An 8km trek to a less-visited cave system, listed among guide Mohan’s favourite routes. Allow a full day.",
+    "kind": "Trails & caves",
+    "group": "Further adventures"
+  },
+  {
+    "id": "ulavi-caves-sathodi-waterfall",
+    "name": "Ulavi Caves & Sathodi Waterfall",
+    "images": [
+      "/images/around-campus/sathodi-falls-1.jpg",
+      "/images/around-campus/sathodi-falls-3.jpg"
+    ],
+    "facts": [
+      "Drive time from Jungli: 90 mins",
+      "Without transport: On request",
+      "With transport: On request",
+      "Minimum: Seasonal - ask the team"
+    ],
+    "badge": "Full day",
+    "links": [
+      "https://maps.app.goo.gl/FskboeQmb33Z6tEc9"
+    ],
+    "recommended": false,
+    "description": "Explore caves, forest and Sathodi Waterfall. Access depends on seasonal conditions and required permissions.",
+    "kind": "Trails & caves",
+    "group": "Further adventures"
+  },
+  {
+    "id": "rent-a-scooter",
+    "name": "Rent a Scooter",
+    "images": [
+      "/images/around-campus/scooter-rental-1.jpg"
+    ],
+    "facts": [
+      "Duration: Per day",
+      "Includes: Vehicle for the day. Note: additional ₹150 for doorstep delivery or pickup."
+    ],
+    "badge": "₹500/day",
+    "links": [],
+    "recommended": false,
+    "description": "Scooters are supplied by Sara Rentals. Call 063648 39990. Doorstep delivery or pickup costs an additional ₹150.",
+    "kind": "Transport",
+    "group": "Transport"
+  },
+  {
+    "id": "rent-an-auto",
+    "name": "Rent an Auto",
+    "images": [
+      "/images/around-campus/rent-auto-1.jpg",
+      "/images/around-campus/rent-auto-2.jpg",
+      "/images/around-campus/rent-auto-3.jpg",
+      "/images/around-campus/rent-auto-4.jpg"
+    ],
+    "facts": [
+      "Duration: On demand",
+      "Includes: Driver included - no self-driving"
+    ],
+    "badge": "~₹200/market run",
+    "links": [],
+    "recommended": false,
+    "description": "Contact Iqbal on 89714 57134 or Rajesaab on 95386 44753. They recognise Jungli’s Big, Soch and Serenne pickup points. A typical market trip costs approximately ₹200.",
+    "kind": "Transport",
+    "group": "Transport"
+  },
+  {
+    "id": "rent-a-cab-for-the-day",
+    "name": "Rent a Cab for the Day",
+    "images": [
+      "/images/around-campus/rent-a-cab-1.jpg"
+    ],
+    "facts": [
+      "Duration: Full day",
+      "Transport: 4-Seater ₹4,500 6-Seater ₹5,500 10-Seater ₹6,500",
+      "Includes: Driver, fuel & 250km included · ₹15/extra km"
+    ],
+    "badge": "From ₹4,500/day",
+    "links": [],
+    "recommended": false,
+    "description": "The source lists Irshad as Jungli’s cab partner. Hire a vehicle for a full day with a flexible route and stops of your choice.",
+    "kind": "Transport",
+    "group": "Transport"
+  }
+]
