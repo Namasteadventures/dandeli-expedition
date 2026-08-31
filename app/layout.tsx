@@ -5,8 +5,9 @@ const description='Rafting, kayaking, ziplining, stays and local trip planning. 
 const origin='https://dandeli-expedition.offbeatdandeli.chatgpt.site';
 export const metadata: Metadata = {
   metadataBase:new URL(origin),title,description,
-  icons:{icon:'/favicon.svg'},
-  openGraph:{title,description,type:'website',url:origin,siteName:'Dandeli Expedition',images:[{url:origin+'/og.png',width:1536,height:1024,alt:'Dandeli Expedition — A little wild. A lot to remember.'}]},
-  twitter:{card:'summary_large_image',title,description,images:[origin+'/og.png']},
+  icons:{icon:'/images/dandeli-expedition-logo.jpeg'},
+  openGraph:{title,description,type:'website',url:origin,siteName:'Dandeli Expedition',images:[{url:origin+'/images/dandeli-expedition-logo.jpeg',width:1080,height:1080,alt:'Dandeli Expedition logo'}]},
+  twitter:{card:'summary_large_image',title,description,images:[origin+'/images/dandeli-expedition-logo.jpeg']},
 };
 export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body>{children}</body></html>}
+
