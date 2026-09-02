@@ -8,7 +8,8 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import places from './around-data.json';
 
 type Place = (typeof places)[number];
-const source = 'https://junglithenomad.com/experiences/around-campus/';
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+const imagePath = (path: string) => `${basePath}${path}`;
 
 function Gallery({ place, initial = 0, expanded = false, onExpand }: { place: Place; initial?: number; expanded?: boolean; onExpand?: (index: number) => void }) {
   const [api, setApi] = useState<CarouselApi>();
@@ -22,7 +23,7 @@ function Gallery({ place, initial = 0, expanded = false, onExpand }: { place: Pl
   }, [api]);
   return <Carousel setApi={setApi} opts={{ loop: place.images.length > 1, startIndex: initial }} className={expanded ? 'experience-gallery expanded-gallery' : 'experience-gallery'} aria-label={`${place.name} photos`}>
     <CarouselContent>{place.images.map((image, i) => <CarouselItem key={image}>
-      {expanded ? <img src={image} alt={`${place.name} — photo ${i + 1}`} loading={i === initial ? 'eager' : 'lazy'} /> : <button className="image-zoom" onClick={() => onExpand?.(i)} aria-label={`Enlarge ${place.name} photo ${i + 1}`}><img src={image} alt={`${place.name} — photo ${i + 1}`} loading="lazy" /><span className="zoom-mark"><Expand size={16}/></span></button>}
+      {expanded ? <img src={imagePath(image)} alt={`${place.name} — photo ${i + 1}`} loading={i === initial ? 'eager' : 'lazy'} /> : <button className="image-zoom" onClick={() => onExpand?.(i)} aria-label={`Enlarge ${place.name} photo ${i + 1}`}><img src={imagePath(image)} alt={`${place.name} — photo ${i + 1}`} loading="lazy" /><span className="zoom-mark"><Expand size={16}/></span></button>}
     </CarouselItem>)}</CarouselContent>
     {place.images.length > 1 && <><CarouselPrevious className="gallery-prev"/><CarouselNext className="gallery-next"/></>}
     <div className="gallery-pagination"><span aria-live="polite">{index + 1} / {place.images.length}</span><div className="gallery-dots">{place.images.map((image, i) => <button key={image} type="button" aria-label={`Show photo ${i + 1} of ${place.name}`} aria-current={i === index ? 'true' : undefined} className={i === index ? 'selected' : ''} onClick={() => api?.scrollTo(i)}/>)}</div></div>
@@ -38,7 +39,7 @@ function ShareButton({ place }: { place: Place }) {
   useEffect(() => {
     if (!navigator.canShare) return;
     const controller = new AbortController();
-    fetch(place.images[0], { signal: controller.signal }).then(response => {
+    fetch(imagePath(place.images[0]), { signal: controller.signal }).then(response => {
       if (!response.ok) throw new Error('Photo unavailable');
       return response.blob();
     }).then(blob => setPhoto(new File([blob], `${place.id}.jpg`, { type: blob.type || 'image/jpeg' }))).catch(() => {});
@@ -47,7 +48,7 @@ function ShareButton({ place }: { place: Place }) {
   async function share() {
     const url = new URL(window.location.pathname, window.location.origin);
     url.searchParams.set('activity', place.id);
-    const text = `*${place.name}*\n${place.badge}\n\n${place.description}\n\n${place.facts.join('\n')}\n\nListed source rates; confirm availability and final cost.\nMore info & photos: ${url.href}`;
+    const text = `*${place.name}*\n${place.badge}\n\n${place.description}\n\n${place.facts.join('\n')}\n\nListed rates; confirm availability and final cost.\nMore info & photos: ${url.href}`;
     setShareText(text); setShareUrl(url.href); setStatus('');
     if (!navigator.share) { window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener,noreferrer'); return; }
     try {
@@ -78,21 +79,19 @@ export function AroundDandeli() {
   }, []);
   const visible = places.filter(place => filter === 'All experiences' || place.kind === filter);
   return <section className="section around" id="around">
-    <div className="section-heading"><div><div className="eyebrow">AROUND DANDELI · THE COMPLETE COLLECTION</div><h2>Every outing.<br/><em>Every detail.</em></h2></div><p>13 experiences. 3 transport options.<br/>Original galleries and exact listed rates.</p></div>
-    <p className="source-notice">Photos and listing information from <a href={source} target="_blank" rel="noreferrer">Jungli’s Around Campus collection</a>. Travel times start at Jungli, not Dandeli Expedition. The source’s guide arrangements, recommendations and rates are shown for reference; confirm your booking with our team.</p>
+    <div className="section-heading"><div><div className="eyebrow">AROUND DANDELI · THE COMPLETE COLLECTION</div><h2>Every outing.<br/><em>Every detail.</em></h2></div><p>13 experiences. 3 transport options.<br/>Photo galleries and listed rates.</p></div>
     <div className="filters" aria-label="Filter experiences">{['All experiences', 'Riverside', 'Wildlife', 'River adventures', 'Trails & caves', 'Explore', 'Transport'].map(kind => <Button key={kind} variant="ghost" className={kind === filter ? 'filter active' : 'filter'} aria-pressed={kind === filter} onClick={() => setFilter(kind)}>{kind}</Button>)}</div>
     <p className="result-count" aria-live="polite">{visible.length} listings · {visible.reduce((sum, place) => sum + place.images.length, 0)} photos</p>
     {['Nearby', 'Further adventures', 'Transport'].map(group => {
       const groupPlaces = visible.filter(place => place.group === group);
       if (!groupPlaces.length) return null;
-      return <div className="experience-group" key={group}><h3 className="experience-group-title">{group === 'Nearby' ? 'Nearby · 0–45 minutes from Jungli' : group === 'Transport' ? 'Rentals & getting around' : 'Further adventures'}</h3><div className="activity-grid destination-grid">{groupPlaces.map(place => <article className={`activity-card experience-card${highlight === place.id ? ' shared-highlight' : ''}`} id={place.id} key={place.id}>
+      return <div className="experience-group" key={group}><h3 className="experience-group-title">{group === 'Nearby' ? 'Nearby · 0–45 minutes from Dandeli' : group === 'Transport' ? 'Rentals & getting around' : 'Further adventures'}</h3><div className="activity-grid destination-grid">{groupPlaces.map(place => <article className={`activity-card experience-card${highlight === place.id ? ' shared-highlight' : ''}`} id={place.id} key={place.id}>
         <div className="experience-media"><Gallery place={place} onExpand={index => setPhoto({ place, index })}/><ShareButton place={place}/>{place.links[0] && <a className="experience-map" href={place.links[0]} target="_blank" rel="noreferrer" aria-label={`Find ${place.name} on map`}><MapPin size={17}/></a>}</div>
-        <div className="card-body"><div className="experience-meta"><span className="category">{place.kind}</span><span className="experience-duration">{place.badge}</span></div><h3>{place.name}</h3>{place.recommended && <span className="community-pick">Recommended by Jungli’s community</span>}<p>{place.description}</p><dl className="experience-facts">{place.facts.map(fact => { const colon = fact.indexOf(':'); return <div key={fact}><dt>{fact.slice(0, colon)}</dt><dd>{fact.slice(colon + 1).trim()}</dd></div>; })}</dl><a className="experience-enquire" href={`https://wa.me/916363066331?text=${encodeURIComponent(`Hello Dandeli Expedition, I would like to enquire about ${place.name}. Please confirm availability, the listed rates and inclusions.`)}`} target="_blank" rel="noreferrer">Enquire about this experience ↗</a></div>
+        <div className="card-body"><div className="experience-meta"><span className="category">{place.kind}</span><span className="experience-duration">{place.badge}</span></div><h3>{place.name}</h3>{place.recommended && <span className="community-pick">Recommended</span>}<p>{place.description}</p><dl className="experience-facts">{place.facts.map(fact => { const colon = fact.indexOf(':'); return <div key={fact}><dt>{fact.slice(0, colon)}</dt><dd>{fact.slice(colon + 1).trim()}</dd></div>; })}</dl><a className="experience-enquire" href={`https://wa.me/918050171306?text=${encodeURIComponent(`Hello Dandeli Expedition, I would like to enquire about ${place.name}. Please confirm availability, the listed rates and inclusions.`)}`} target="_blank" rel="noreferrer">Enquire about this experience ↗</a></div>
       </article>)}</div></div>;
     })}
-    <aside className="before-you-go"><h3>Before you book</h3><ul className="experience-notes"><li>The source’s guided rates include Mohan or a member of his team. Confirm the guide arrangement for your booking.</li><li>Group minimums apply to the rates that include transport.</li><li>The published rates are estimates and may increase for holidays or long weekends.</li><li>Permits, guides and transport require advance booking.</li><li>Heavy monsoon conditions can suspend some activities.</li><li>For an independent visit, use the original map links and arrange your own vehicle or cab.</li></ul></aside>
-    <aside className="source-guide"><img src="/images/around-campus/mohan.webp" alt="Mohan, Jungli’s Head of Adventure, in the Himalayas" loading="lazy"/><div><div className="eyebrow">MEET THE GUIDE · FROM THE SOURCE</div><h3>Mohan, Jungli’s Head of Adventure</h3><p>Jungli identifies Mohan as its local adventure lead. Raised near these forests after his grandfather came from Nepal to work at the factory, he has trekked to Everest Base Camp and undertaken mountaineering and rescue training. The source attributes guided outings to him or his team.</p><a className="text-link" href="https://wa.me/918050675009" target="_blank" rel="noreferrer">Contact Mohan at Jungli ↗</a></div></aside>
-    <Dialog open={photo !== null} onOpenChange={open => { if (!open) setPhoto(null); }}><DialogContent className="photo-dialog"><DialogTitle>{photo?.place.name}</DialogTitle><DialogDescription>Original gallery · Swipe or use the arrows to browse all photos.</DialogDescription>{photo && <Gallery key={`${photo.place.id}-${photo.index}`} place={photo.place} initial={photo.index} expanded/>}</DialogContent></Dialog>
+    <aside className="before-you-go"><h3>Before you book</h3><ul className="experience-notes"><li>Guided rates may include a local guide. Confirm the guide arrangement for your booking.</li><li>Group minimums apply to the rates that include transport.</li><li>The published rates are estimates and may increase for holidays or long weekends.</li><li>Permits, guides and transport require advance booking.</li><li>Heavy monsoon conditions can suspend some activities.</li><li>For an independent visit, use the map links and arrange your own vehicle or cab.</li></ul></aside>
+    <Dialog open={photo !== null} onOpenChange={open => { if (!open) setPhoto(null); }}><DialogContent className="photo-dialog"><DialogTitle>{photo?.place.name}</DialogTitle><DialogDescription>Photo gallery · Swipe or use the arrows to browse all photos.</DialogDescription>{photo && <Gallery key={`${photo.place.id}-${photo.index}`} place={photo.place} initial={photo.index} expanded/>}</DialogContent></Dialog>
   </section>;
 }
 
