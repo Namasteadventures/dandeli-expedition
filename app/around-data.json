@@ -3,7 +3,7 @@
     "id": "crocodile-park",
     "name": "Crocodile Park",
     "images": [
-      "/images/around-campus/croc-park-1.jpg"
+      "/images/around-campus/croc-park-1.webp"
     ],
     "facts": [
       "Drive time from Jungli: 10 mins",
@@ -24,16 +24,16 @@
     "id": "moulangi-eco-park",
     "name": "Moulangi Eco Park",
     "images": [
-      "/images/around-campus/20251012_1356520.jpg",
-      "/images/around-campus/20251012_140549.jpg",
-      "/images/around-campus/moulangi-5.jpg",
-      "/images/around-campus/moulangi-2.jpg",
-      "/images/around-campus/moulangi-3.jpg",
-      "/images/around-campus/moulangi-4.jpg",
-      "/images/around-campus/moulangi-6.jpg",
-      "/images/around-campus/moulangi-7.jpg",
-      "/images/around-campus/moulangi-8.jpg",
-      "/images/around-campus/moulangi-9.jpg"
+      "/images/around-campus/20251012_1356520.webp",
+      "/images/around-campus/20251012_140549.webp",
+      "/images/around-campus/moulangi-5.webp",
+      "/images/around-campus/moulangi-2.webp",
+      "/images/around-campus/moulangi-3.webp",
+      "/images/around-campus/moulangi-4.webp",
+      "/images/around-campus/moulangi-6.webp",
+      "/images/around-campus/moulangi-7.webp",
+      "/images/around-campus/moulangi-8.webp",
+      "/images/around-campus/moulangi-9.webp"
     ],
     "facts": [
       "Drive time from Jungli: 25 mins",
@@ -54,9 +54,9 @@
     "id": "e-bike-tour-of-dandeli-town",
     "name": "E-Bike Tour of Dandeli Town",
     "images": [
-      "/images/around-campus/ecycle-tour-3.jpg",
-      "/images/around-campus/ecycle-tour-2.jpg",
-      "/images/around-campus/ecycle-tour-1.jpg"
+      "/images/around-campus/ecycle-tour-3.webp",
+      "/images/around-campus/ecycle-tour-2.webp",
+      "/images/around-campus/ecycle-tour-1.webp"
     ],
     "facts": [
       "Drive time from Jungli: 30 mins",
@@ -77,14 +77,14 @@
     "id": "phansoli-elephant-camp",
     "name": "Phansoli Elephant Camp",
     "images": [
-      "/images/around-campus/elephant-camp-3.jpg",
-      "/images/around-campus/elephant-camp-7.jpg",
-      "/images/around-campus/elephant-camp-4.jpg",
-      "/images/around-campus/elephant-camp-5.jpg",
-      "/images/around-campus/elephant-camp-6.jpg",
-      "/images/around-campus/elephant-camp-9.jpg",
-      "/images/around-campus/elephant-camp-2.jpg",
-      "/images/around-campus/elephant-camp-1.jpg"
+      "/images/around-campus/elephant-camp-3.webp",
+      "/images/around-campus/elephant-camp-7.webp",
+      "/images/around-campus/elephant-camp-4.webp",
+      "/images/around-campus/elephant-camp-5.webp",
+      "/images/around-campus/elephant-camp-6.webp",
+      "/images/around-campus/elephant-camp-9.webp",
+      "/images/around-campus/elephant-camp-2.webp",
+      "/images/around-campus/elephant-camp-1.webp"
     ],
     "facts": [
       "Drive time from Jungli: 35 mins",
@@ -105,8 +105,8 @@
     "id": "jungle-safari",
     "name": "Jungle Safari",
     "images": [
-      "/images/around-campus/safari-1.jpg",
-      "/images/around-campus/safari-2.jpg"
+      "/images/around-campus/safari-1.webp",
+      "/images/around-campus/safari-2.webp"
     ],
     "facts": [
       "Drive time from Jungli: 35 mins",
@@ -127,11 +127,11 @@
     "id": "sunset-hike-to-backwaters",
     "name": "Sunset Hike to Backwaters",
     "images": [
-      "/images/around-campus/backwaters-5.jpg",
-      "/images/around-campus/backwaters-4.jpg",
-      "/images/around-campus/backwaters-1.jpg",
-      "/images/around-campus/backwaters-2.jpg",
-      "/images/around-campus/backwaters-3.jpg"
+      "/images/around-campus/backwaters-5.webp",
+      "/images/around-campus/backwaters-4.webp",
+      "/images/around-campus/backwaters-1.webp",
+      "/images/around-campus/backwaters-2.webp",
+      "/images/around-campus/backwaters-3.webp"
     ],
     "facts": [
       "Drive time from Jungli: 40 mins",
@@ -152,9 +152,9 @@
     "id": "white-water-rafting",
     "name": "White Water Rafting",
     "images": [
-      "/images/around-campus/img-20241216-wa0066.jpg",
-      "/images/around-campus/rafting-1.jpg",
-      "/images/around-campus/rafting-2.jpg"
+      "/images/around-campus/img-20241216-wa0066.webp",
+      "/images/around-campus/rafting-1.webp",
+      "/images/around-campus/rafting-2.webp"
     ],
     "facts": [
       "Drive time from Jungli: 45 mins",
@@ -175,11 +175,11 @@
     "id": "white-water-kayaking",
     "name": "White Water Kayaking",
     "images": [
-      "/images/around-campus/kayaking-2.jpg",
-      "/images/around-campus/kayaking-1.jpg",
-      "/images/around-campus/kayaking-5.jpg",
-      "/images/around-campus/kayaking-3.jpg",
-      "/images/around-campus/kayaking-4.jpg"
+      "/images/around-campus/kayaking-2.webp",
+      "/images/around-campus/kayaking-1.webp",
+      "/images/around-campus/kayaking-5.webp",
+      "/images/around-campus/kayaking-3.webp",
+      "/images/around-campus/kayaking-4.webp"
     ],
     "facts": [
       "Drive time from Jungli: 45 mins",
@@ -200,14 +200,14 @@
     "id": "hornbill-resort-day-package",
     "name": "Hornbill Resort Day Package",
     "images": [
-      "/images/around-campus/hornbill-river-resort.jpg",
-      "/images/around-campus/20251012_140922.jpg",
-      "/images/around-campus/hornbill-5.jpg",
-      "/images/around-campus/hornbill-4.jpg",
-      "/images/around-campus/hornbill-2.jpg",
-      "/images/around-campus/hornbill-3.jpg",
-      "/images/around-campus/hornbill-6.jpg",
-      "/images/around-campus/hornbill-1.jpg"
+      "/images/around-campus/hornbill-river-resort.webp",
+      "/images/around-campus/20251012_140922.webp",
+      "/images/around-campus/hornbill-5.webp",
+      "/images/around-campus/hornbill-4.webp",
+      "/images/around-campus/hornbill-2.webp",
+      "/images/around-campus/hornbill-3.webp",
+      "/images/around-campus/hornbill-6.webp",
+      "/images/around-campus/hornbill-1.webp"
     ],
     "facts": [
       "Drive time from Jungli: 45 mins",
@@ -228,19 +228,19 @@
     "id": "kumbarwada-village-day-trip",
     "name": "Kumbarwada Village Day Trip",
     "images": [
-      "/images/around-campus/kumbarwada-2.jpg",
-      "/images/around-campus/kumbarwada-3.jpg",
-      "/images/around-campus/kumbarwada-4.jpg",
-      "/images/around-campus/kumbarwada-5.jpg",
-      "/images/around-campus/kumbarwada-6.jpg",
-      "/images/around-campus/kumbarwada-7.jpg",
-      "/images/around-campus/kumbarwada-8.jpg",
-      "/images/around-campus/kumbarwada-9.jpg",
-      "/images/around-campus/kumbarwada-10.jpg",
-      "/images/around-campus/kumbarwada-11.jpg",
-      "/images/around-campus/kumbarwada-12.jpg",
-      "/images/around-campus/kumbarwada-13.jpg",
-      "/images/around-campus/kumbarwada-1.jpg"
+      "/images/around-campus/kumbarwada-2.webp",
+      "/images/around-campus/kumbarwada-3.webp",
+      "/images/around-campus/kumbarwada-4.webp",
+      "/images/around-campus/kumbarwada-5.webp",
+      "/images/around-campus/kumbarwada-6.webp",
+      "/images/around-campus/kumbarwada-7.webp",
+      "/images/around-campus/kumbarwada-8.webp",
+      "/images/around-campus/kumbarwada-9.webp",
+      "/images/around-campus/kumbarwada-10.webp",
+      "/images/around-campus/kumbarwada-11.webp",
+      "/images/around-campus/kumbarwada-12.webp",
+      "/images/around-campus/kumbarwada-13.webp",
+      "/images/around-campus/kumbarwada-1.webp"
     ],
     "facts": [
       "Drive time from Jungli: 75 mins",
@@ -261,8 +261,8 @@
     "id": "akala-gavi-caves-hike",
     "name": "Akala Gavi Caves Hike",
     "images": [
-      "/images/around-campus/akala-gavi-1.jpg",
-      "/images/around-campus/akala-gavi-2.jpg"
+      "/images/around-campus/akala-gavi-1.webp",
+      "/images/around-campus/akala-gavi-2.webp"
     ],
     "facts": [
       "Drive time from Jungli: 90 mins",
@@ -283,13 +283,13 @@
     "id": "mahamane-caves-hike",
     "name": "Mahamane Caves Hike",
     "images": [
-      "/images/around-campus/mahamane-2.jpg",
-      "/images/around-campus/mahamane-1.jpg",
-      "/images/around-campus/mahamane-6.jpg",
-      "/images/around-campus/mahamane-5.jpg",
-      "/images/around-campus/mahamane-3.jpg",
-      "/images/around-campus/mahamane-7.jpg",
-      "/images/around-campus/mahamane-8.jpg"
+      "/images/around-campus/mahamane-2.webp",
+      "/images/around-campus/mahamane-1.webp",
+      "/images/around-campus/mahamane-6.webp",
+      "/images/around-campus/mahamane-5.webp",
+      "/images/around-campus/mahamane-3.webp",
+      "/images/around-campus/mahamane-7.webp",
+      "/images/around-campus/mahamane-8.webp"
     ],
     "facts": [
       "Drive time from Jungli: 90 mins",
@@ -310,8 +310,8 @@
     "id": "ulavi-caves-sathodi-waterfall",
     "name": "Ulavi Caves & Sathodi Waterfall",
     "images": [
-      "/images/around-campus/sathodi-falls-1.jpg",
-      "/images/around-campus/sathodi-falls-3.jpg"
+      "/images/around-campus/sathodi-falls-1.webp",
+      "/images/around-campus/sathodi-falls-3.webp"
     ],
     "facts": [
       "Drive time from Jungli: 90 mins",
@@ -332,7 +332,7 @@
     "id": "rent-a-scooter",
     "name": "Rent a Scooter",
     "images": [
-      "/images/around-campus/scooter-rental-1.jpg"
+      "/images/around-campus/scooter-rental-1.webp"
     ],
     "facts": [
       "Duration: Per day",
@@ -349,10 +349,10 @@
     "id": "rent-an-auto",
     "name": "Rent an Auto",
     "images": [
-      "/images/around-campus/rent-auto-1.jpg",
-      "/images/around-campus/rent-auto-2.jpg",
-      "/images/around-campus/rent-auto-3.jpg",
-      "/images/around-campus/rent-auto-4.jpg"
+      "/images/around-campus/rent-auto-1.webp",
+      "/images/around-campus/rent-auto-2.webp",
+      "/images/around-campus/rent-auto-3.webp",
+      "/images/around-campus/rent-auto-4.webp"
     ],
     "facts": [
       "Duration: On demand",
@@ -369,7 +369,7 @@
     "id": "rent-a-cab-for-the-day",
     "name": "Rent a Cab for the Day",
     "images": [
-      "/images/around-campus/rent-a-cab-1.jpg"
+      "/images/around-campus/rent-a-cab-1.webp"
     ],
     "facts": [
       "Duration: Full day",
