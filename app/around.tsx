@@ -47,7 +47,7 @@ function ShareButton({ place }: { place: Place }) {
   async function share() {
     const url = new URL(window.location.pathname, window.location.origin);
     url.searchParams.set('activity', place.id);
-    const text = `🌿 *${place.name}* 🌿\n${place.badge}\n\n${place.description}\n\n${place.facts.join('\n')}\n\nListed source rates; confirm availability and final cost.\n📍 More info & photos: ${url.href}`;
+    const text = `*${place.name}*\n${place.badge}\n\n${place.description}\n\n${place.facts.join('\n')}\n\nListed source rates; confirm availability and final cost.\nMore info & photos: ${url.href}`;
     setShareText(text); setShareUrl(url.href); setStatus('');
     if (!navigator.share) { window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener,noreferrer'); return; }
     try {
