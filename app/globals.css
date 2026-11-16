@@ -178,3 +178,56 @@ footer{background:#08100b}
   .faq{grid-template-columns:1fr;gap:40px}.faq summary{font-size:16px;line-height:24px}.faq details>p{padding-right:16px}.plan h2{font-size:48px}.plan-actions{flex-direction:column}
   .footer-bottom{align-items:flex-start;flex-direction:column}
 }
+
+/* Brand theme: true black surfaces with the orange sampled from the logo (#f2510d). */
+:root{
+  --background:#000;
+  --foreground:#f7f4ef;
+  --primary:#f2510d;
+  --border:#2a2a2a;
+  --detail-green:#f2510d;
+  --card:#0b0b0b;
+  --card-foreground:#f7f4ef;
+  --popover:#0b0b0b;
+  --popover-foreground:#f7f4ef;
+  --muted:#111;
+  --muted-foreground:#c9c5bf;
+  --accent:#161616;
+  --accent-foreground:#f7f4ef;
+  --secondary:#101010;
+  --secondary-foreground:#f7f4ef;
+  --input:#373737;
+  --ring:#f2510d;
+}
+body{background:#000;color:#f7f4ef}
+.site-header{border-color:#2a2a2a;background:#000000ed}
+.navigation.open{background:#000000f7}
+.hero,.hero-split,.source-intro,.offers,.stays,.around,.process,.faq,.plan,footer{background:#000}
+.tagline-block{background:#070707}
+.hero-visual,.offer-card,.specialist-strip,.stay-card,.stay-gallery,.stay-terms,.activity-card,.stay-section,.before-you-go,.around .experience-card{background:#0b0b0b}
+.offer-card,.stay-card,.activity-card,.around .experience-card,.site-header{border-color:#2a2a2a}
+.hero-proof,.offer-copy small,.content-note,.footer-bottom{color:#aaa6a0}
+p,.experience-notes{color:#cbc7c1}
+h1,h2{color:#f7f4ef}
+h3,.experience-group-title,.before-you-go h3,h1 em,h2 em,h3 em,.eyebrow,.category,.experience-enquire,.text-link,.price,.stay-kicker,.stay-terms span,.footer-main>div>span{color:#f2510d}
+.cta,.filters .filter.active,.experience-share:hover,.experience-map:hover{background:#f2510d!important;color:#000!important}
+.cta:hover{background:#ff6a25!important}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline-color:#f2510d}
+.text-link,.experience-enquire{border-color:#7f2b0b}
+.community-pick{color:#ff7b40;border-color:#803214;background:#1a0c06}
+.gallery-dots button.selected:before{background:#f2510d}
+.around{--around-ink:#f7f4ef;--around-copy:#d6d2cc;--around-muted:#aaa6a0;--around-gold:#f2510d;--around-surface:#0b0b0b;--around-line:#303030}
+.around .filters .filter:hover{background:#171717;color:var(--around-ink)}
+.around .filters .filter.active{background:#f2510d!important;border-color:#f2510d!important;color:#000!important}
+.around .experience-card{background:#0b0b0b;border-color:#303030;box-shadow:0 18px 50px #000}
+.around .experience-card:hover{border-color:#5b5b5b;box-shadow:0 24px 64px #000}
+.around .gallery-pagination,.gallery-pagination{background:#080808}
+.around .gallery-dots button:before{background:#777}
+.around .gallery-dots button.selected:before{background:#f2510d}
+.around .community-pick{color:#ff7b40;border-color:#803214;background:#1a0c06}
+.around .experience-facts>div{border-bottom-color:#292929}
+.around .experience-enquire:hover{color:#ff7b40}
+.photo-dialog,.photo-dialog .expanded-gallery img{background:#050505!important}
+.share-dialog input{background:#0b0b0b;border-color:#3a3a3a}
+.offer-copy .price,.offer-copy a,.specialist-strip span,.stay-copy>a,.process li>span,.faq summary span,.destination-bottom,.zoom-mark,.map-pin,.experience-enquire,.card-bottom,.footer-main>div>span{color:#f2510d!important}
+.offer-copy a,.stay-copy>a,.destination-bottom,.card-bottom{border-color:#3a241b}
