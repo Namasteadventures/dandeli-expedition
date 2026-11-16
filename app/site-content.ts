@@ -1,24 +1,29 @@
+const galleryImages = (folder: string, count: number) => Array.from(
+  { length: count },
+  (_, index) => `/images/stays/${folder}/photo-${String(index + 1).padStart(2, '0')}.webp`,
+);
+
 export const stays = [
   {
     name: 'Jungle Edge Resort',
     description: 'A leafy resort with distinctive A-frame cottages, spacious cottage rooms and a full set of group-friendly leisure spaces.',
     roomTypes: ['A-shape cottages', 'Deluxe cottages', 'Premium cottages'],
     amenities: ['Unlimited buffet', 'Swimming pool', 'Rain dance', 'Campfire', 'Dining area'],
-    images: ['/images/stays/jungle-edge-aerial.webp', '/images/stays/jungle-edge-cottages.webp', '/images/stays/jungle-edge-pool.webp'],
+    images: galleryImages('jungle-edge-gallery', 29),
   },
   {
     name: 'Nadi Teera Cottages',
     description: 'A cottage retreat framed by forested hills, with landscaped grounds and room choices ranging from premium cottages to commando-style stays.',
     roomTypes: ['Premium cottages', 'Deluxe cottages', 'Commando cottages'],
     amenities: ['Unlimited buffet', 'Swimming pool', 'Bonfire', 'Landscaped grounds'],
-    images: ['/images/stays/nadi-teera-aerial.webp', '/images/stays/nadi-teera-cottages.webp', '/images/stays/nadi-teera-pool.webp'],
+    images: galleryImages('nadi-teera-gallery', 26),
   },
   {
     name: 'River Point Resort',
     description: 'A riverside resort with flexible rooms for couples, families and groups, plus generous outdoor areas for unwinding between adventures.',
     roomTypes: ['Deluxe rooms', '2-person rooms', '4-person rooms', 'Group rooms'],
     amenities: ['Swimming pool', 'Dining spaces', 'Garden seating', 'Rain dance', 'River views'],
-    images: ['/images/stays/river-point-aerial.webp', '/images/stays/river-point-room.webp', '/images/stays/river-point-river.webp'],
+    images: galleryImages('river-point-gallery', 48),
   },
 ] as const;
 
@@ -27,15 +32,15 @@ export const bookableActivities = [
     name: 'White water rafting',
     price: '₹600 per person onwards',
     image: '/images/around-campus/rafting-1.webp',
-    summary: 'Choose a short, mid length or long Kali River route according to water levels, experience and operating conditions.',
-    note: 'Most rafting options require guests to be over 12 and suitably fit.',
+    summary: 'Choose a short, mid-length or long Kali River route, depending on water levels, experience and operating conditions.',
+    note: 'Most rafting options require guests to be over 12 years old and physically fit.',
   },
   {
     name: 'Kayaking',
     price: '₹300 per person onwards',
     image: '/images/around-campus/kayaking-2.webp',
     summary: 'Paddle with the equipment, safety gear and guidance needed for the selected route and conditions.',
-    note: 'Suitable fitness and an age above 12 are listed requirements.',
+    note: 'Guests must be over 12 years old and physically fit.',
   },
   {
     name: 'Zipline',
@@ -59,11 +64,11 @@ export const bookableActivities = [
     note: 'Duration, group size and current conditions can affect the final price.',
   },
   {
-    name: 'Go karting',
+    name: 'Go-karting',
     price: '₹300 per person onwards',
     image: '/images/around-campus/moulangi-9.webp',
     summary: 'Add a short driving session to the day for a change of pace from the river activities.',
-    note: 'Ask the team to confirm the current track schedule and price.',
+    note: 'Ask us to confirm the current track schedule and price.',
   },
 ] as const;
 
@@ -76,23 +81,23 @@ export const specialistActivities = [
 export const faqItems = [
   {
     question: 'What can I book through Dandeli Expedition?',
-    answer: 'The team can help arrange accommodation, rafting, kayaking, ziplining, boating, water zorbing, go karting and selected guided outings around Dandeli. Availability depends on the season, river conditions and operator schedules.',
+    answer: 'We can help you arrange accommodation, rafting, kayaking, ziplining, boating, water zorbing, go-karting and selected guided outings around Dandeli. Availability depends on the season, river conditions and operator schedules.',
   },
   {
     question: 'How much does rafting in Dandeli cost?',
-    answer: 'The source site lists rafting from ₹600 per person. The final price depends on the route, water level, trip length and current operating conditions, so confirm the rate before travelling.',
+    answer: 'Rafting starts from ₹600 per person. The final price depends on the route, water level, trip length and operating conditions, so please confirm the current rate before you travel.',
   },
   {
     question: 'Is rafting available throughout the year?',
-    answer: 'The source site says short and mid length rafting usually pause during the monsoon. Longer rafting also needs a suitable water level. Ask the team for a current update before fixing your travel plan.',
+    answer: 'Short and mid-length rafting usually pause during the monsoon, while longer routes also require suitable water levels. Ask us for a current update before you finalise your travel plan.',
   },
   {
     question: 'Are the published stay prices final?',
     answer: 'No. Stay prices are shared on request because dates, room type, group size, meal plan, holidays and availability can change the final quote.',
   },
   {
-    question: 'Can the team help with local transport?',
-    answer: 'Yes. Dandeli Expedition states that it can help arrange transport and local guidance for nearby attractions. Share your group size and itinerary when you enquire.',
+    question: 'Can you help with local transport?',
+    answer: 'Yes. We can help arrange transport and local guidance for nearby attractions. Share your group size and itinerary when you enquire.',
   },
   {
     question: 'Where is Dandeli Expedition located?',

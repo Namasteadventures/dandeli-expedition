@@ -46,7 +46,7 @@
       "https://maps.app.goo.gl/VWhKKEXE23m6bJzo9"
     ],
     "recommended": true,
-    "description": "Riverside swimming, picnic areas and forest surroundings, with go-karting and buggy driving available on site. Entry: ₹50. Expect busier weekends during September–February.",
+    "description": "Riverside swimming, picnic areas and forest surroundings, with go-karting and buggy driving available on site. Entry is ₹50. Expect busier weekends from September to February.",
     "kind": "Riverside",
     "group": "Nearby"
   },
@@ -167,9 +167,9 @@
       "https://maps.app.goo.gl/tYpBt2io4SjEzwav5"
     ],
     "recommended": true,
-    "description": "Raft the Kali River on a 5km or 11km route with Grade 2 and 3 rapids. Operations are generally paused during the July–August monsoon period; confirm before booking.",
+    "description": "Raft the Kali River on a 5 km or 11 km route with Grade 2 and 3 rapids. Operations generally pause during the July and August monsoon period, so please confirm before booking.",
     "kind": "River adventures",
-    "group": "Further adventures"
+    "group": "Nearby"
   },
   {
     "id": "white-water-kayaking",
@@ -194,7 +194,7 @@
     "recommended": false,
     "description": "Guided instruction in paddling a kayak through moving water. Be prepared to get wet and potentially fall into the river.",
     "kind": "River adventures",
-    "group": "Further adventures"
+    "group": "Nearby"
   },
   {
     "id": "hornbill-resort-day-package",
@@ -222,7 +222,7 @@
     "recommended": false,
     "description": "A Kali River resort visit with swimming, optional kayaking and lunch by the river. Zip-lining, zorbing and quad biking cost extra.",
     "kind": "Riverside",
-    "group": "Further adventures"
+    "group": "Nearby"
   },
   {
     "id": "kumbarwada-village-day-trip",
@@ -297,12 +297,12 @@
       "With transport: ₹3,375/person",
       "Minimum: ₹13,500 (allows 4 pax)"
     ],
-    "badge": "Full day (8km trek)",
+    "badge": "Full day (8 km trek)",
     "links": [
       "https://maps.app.goo.gl/FskboeQmb33Z6tEc9"
     ],
     "recommended": true,
-    "description": "An 8km trek to a less-visited cave system. Allow a full day.",
+    "description": "An 8 km trek to a less-visited cave system. Allow a full day.",
     "kind": "Trails & caves",
     "group": "Further adventures"
   },
@@ -317,7 +317,7 @@
       "Drive time from Dandeli: 90 mins",
       "Without transport: On request",
       "With transport: On request",
-      "Minimum: Seasonal - ask the team"
+      "Minimum: Seasonal - ask us"
     ],
     "badge": "Full day",
     "links": [
@@ -374,7 +374,7 @@
     "facts": [
       "Duration: Full day",
       "Transport: 4-Seater ₹4,500 6-Seater ₹5,500 10-Seater ₹6,500",
-      "Includes: Driver, fuel & 250km included · ₹15/extra km"
+      "Includes: Driver, fuel and 250 km included; ₹15 per extra km"
     ],
     "badge": "From ₹4,500/day",
     "links": [],
