@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Geist } from 'next/font/google';
 import './globals.css';
 const geist=Geist({subsets:['latin'],variable:'--font-geist'});
@@ -14,5 +14,6 @@ export const metadata: Metadata = {
   openGraph:{title,description,type:'website',url:origin,siteName:'Dandeli Expedition',locale:'en_IN',images:[{url:origin+'/og.png',width:1200,height:630,alt:'Dandeli Expedition stays and outdoor adventures'}]},
   twitter:{card:'summary_large_image',title,description,images:[origin+'/og.png']},
 };
+export const viewport: Viewport = { width: 'device-width', initialScale: 1 };
 export default function RootLayout({children}:Readonly<{children:React.ReactNode}>){return <html lang="en"><body className={geist.variable}>{children}</body></html>}
 
