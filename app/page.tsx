@@ -1,17 +1,123 @@
 'use client';
+
 import { useState } from 'react';
-import { ArrowUpRight, ArrowDown, MapPin, Compass, Menu, X, MessageCircle, Check } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowDown, ArrowUpRight, MapPin, Menu, MessageCircle, Phone, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { AroundDandeli } from './around';
-const whatsapp='https://wa.me/918050171306';
-const basePath=process.env.NEXT_PUBLIC_BASE_PATH ?? '';
-const imagePath=(path:string)=>`${basePath}${path}`;
-export default function Home(){const[menu,setMenu]=useState(false);return <>
-<header className="site-header"><a href="#" className="brand" aria-label="Dandeli Expedition home"><span className="brand-logo"><img src={imagePath('/images/dandeli-expedition-logo.jpeg')} alt="Dandeli Expedition" width={1080} height={1080}/></span></a><nav className={menu?'navigation open':'navigation'} aria-label="Main navigation">{[['Experiences','experiences'],['Around Dandeli','around'],['Stays','stays'],['Plan your visit','plan']].map(([name,id])=><a key={id} href={'#'+id} onClick={()=>setMenu(false)}>{name}</a>)}</nav><a className="cta header-cta" href={whatsapp} target="_blank" rel="noreferrer">Let’s plan a trip <ArrowUpRight size={16}/></a><Button className="mobile-toggle" variant="ghost" aria-label={menu?'Close menu':'Open menu'} aria-expanded={menu} onClick={()=>setMenu(!menu)}>{menu?<X/>:<Menu/>}</Button></header>
-<main><section className="hero"><div className="eyebrow"><span/> EXPERIENCES · IN & AROUND DANDELI</div><h1>A little wild.<br/>A lot to <em>remember.</em></h1><p>River days. Forest trails. A slower kind of escape.<br/>Come explore Dandeli, one unforgettable experience at a time.</p><a href="#experiences" className="cta">Find your adventure <ArrowDown size={16}/></a><div className="hero-foot"><span><MapPin size={14}/> DANDELI, KARNATAKA</span><span>THE WESTERN GHATS ARE CALLING</span></div></section>
-<section className="intro section"><div><div className="eyebrow">YOUR LOCAL ADVENTURE STARTS HERE</div><h2>You bring the curiosity.<br/><em>We’ll help with the rest.</em></h2><p className="intro-quote">More exploring. Less figuring things out.</p><p>Make room for a holiday that feels like you. Dandeli Expedition helps you bring together a comfortable stay, outdoor adventures, and time to simply switch off.</p><p>Need a guide or a ride? Talk to our team about local guidance and transport, and build a trip around your group, your pace, and your budget.</p><a className="text-link" href={whatsapp} target="_blank" rel="noreferrer">Talk to the Dandeli team <ArrowUpRight size={18}/></a><div className="intro-facts">{['Stay planning','Local guidance','Transport help'].map(t=><span key={t}><Check size={15}/>{t}</span>)}</div></div><figure><img src={imagePath('/images/guide.webp')} alt="A paddler exploring the outdoors by kayak"/><figcaption><Compass size={15}/> A little closer to nature. A little further from routine.</figcaption></figure></section>
-<div id="experiences"><AroundDandeli /></div>
-<section className="stay-section section" id="stays"><img src={imagePath('/images/hero.webp')} alt="A room overlooking the pool from Dandeli Expedition’s stay gallery" loading="lazy"/><div><div className="eyebrow">STAY A LITTLE LONGER</div><h2>Big days out.<br/><em>A place to unwind.</em></h2><p>Pair your adventures with a stay that fits your budget. Tell us who’s coming and when — we’ll help you find the right option.</p><a className="cta" href={whatsapp} target="_blank" rel="noreferrer">Find my stay <ArrowUpRight size={16}/></a></div></section>
-<section className="plan section" id="plan"><div className="eyebrow">LESS SCROLLING. MORE EXPLORING.</div><h2>Your next good story<br/><em>starts in Dandeli.</em></h2><p>Send us your dates, group size, and a little of what you have in mind.<br/>Let’s make a trip of it.</p><a className="cta" href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={18}/> Plan on WhatsApp <ArrowUpRight size={18}/></a></section></main>
-<footer><div className="footer-main"><a href="#" className="brand"><span className="brand-logo"><img src={imagePath('/images/dandeli-expedition-logo.jpeg')} alt="Dandeli Expedition" width={1080} height={1080} loading="lazy"/></span></a><p>A little adventure. A little escape.<br/>A whole lot of Dandeli.</p><div><span>COME FIND US</span><a href="https://www.google.com/maps/search/?api=1&query=Dandeli+Expedition+Dandeli+Karnataka" target="_blank" rel="noreferrer">Dandeli Expedition<br/>Dandeli, Karnataka 📍</a></div><div><span>LET’S TALK</span><a href="tel:+918050171306">+91 80501 71306</a><a href="mailto:expeditiondandeli@gmail.com">expeditiondandeli@gmail.com</a></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Dandeli Expedition</span><span>Made for a life outside.</span><a href="#">Back to top ↑</a></div></footer></>}
+import { bookableActivities, business, faqItems, specialistActivities, stays } from './site-content';
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+const imagePath = (path: string) => `${basePath}${path}`;
+
+export default function Home() {
+  const [menu, setMenu] = useState(false);
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'TravelAgency',
+    name: business.name,
+    url: 'https://dandeliexpedition.com/',
+    telephone: business.phonePrimary,
+    email: business.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Near Shantadurga Hotel, K.C. Circle',
+      addressLocality: 'Dandeli',
+      addressRegion: 'Karnataka',
+      postalCode: '581325',
+      addressCountry: 'IN',
+    },
+  };
+
+  return <>
+    <a className="skip-link" href="#main-content">Skip to content</a>
+    <header className="site-header" id="top">
+      <a href="#top" className="brand" aria-label="Dandeli Expedition home">
+        <span className="brand-logo"><Image src={imagePath('/images/dandeli-expedition-logo.jpeg')} alt="Dandeli Expedition" width={1080} height={1080} priority /></span>
+      </a>
+      <nav className={menu ? 'navigation open' : 'navigation'} aria-label="Main navigation">
+        {[['Activities', 'activities'], ['Stays', 'stays'], ['Around Dandeli', 'around'], ['Trip questions', 'questions']].map(([name, id]) => <a key={id} href={`#${id}`} onClick={() => setMenu(false)}>{name}</a>)}
+      </nav>
+      <a className="cta header-cta" href={business.whatsapp} target="_blank" rel="noreferrer">Plan my trip <ArrowUpRight size={16} /></a>
+      <Button className="mobile-toggle" variant="ghost" aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? <X /> : <Menu />}</Button>
+    </header>
+
+    <main id="main-content">
+      <section className="hero hero-split">
+        <div className="hero-copy">
+          <div className="eyebrow"><span /> DANDELI STAYS AND RIVER ADVENTURES</div>
+          <h1>Plan the stay.<br />Pick the adventure.<br /><em>Leave the local details to us.</em></h1>
+          <p>Tell us your dates, group size and budget. We will help you compare stays, river activities and day trips around Dandeli.</p>
+          <div className="hero-actions">
+            <a href={business.whatsapp} className="cta" target="_blank" rel="noreferrer"><MessageCircle size={18} /> Plan on WhatsApp</a>
+            <a href="#activities" className="text-link">See activities <ArrowDown size={16} /></a>
+          </div>
+          <div className="hero-proof" aria-label="Trip planning highlights">
+            <span><strong>6</strong> stays listed</span>
+            <span><strong>9</strong> activities</span>
+            <span><strong>K.C. Circle</strong> local office</span>
+          </div>
+        </div>
+        <figure className="hero-visual">
+          <Image src={imagePath('/images/guide.webp')} alt="Kayaking on calm water near Dandeli at sunset" width={768} height={1024} priority />
+          <figcaption><MapPin size={15} /> Dandeli, Karnataka</figcaption>
+        </figure>
+      </section>
+
+      <section className="section source-intro">
+        <div className="eyebrow">ONE LOCAL CONTACT FOR THE WHOLE PLAN</div>
+        <div className="source-intro-grid">
+          <h2>Less time comparing tabs.<br /><em>More time outside.</em></h2>
+          <div><p>Dandeli Expedition brings accommodation, outdoor activities, local guidance and transport help into one conversation. The rates below come from the existing website and are shown as starting prices.</p><p>River conditions, holidays, room availability and group size can change the final quote. Ask the team to confirm everything before you travel.</p></div>
+        </div>
+      </section>
+
+      <section className="section offers" id="activities">
+        <div className="section-heading"><div><div className="eyebrow">BOOKABLE ACTIVITIES</div><h2>Start with the river.<br /><em>Build the day from there.</em></h2></div><p>Published starting rates from the existing Dandeli Expedition website.</p></div>
+        <div className="offer-grid">
+          {bookableActivities.map((activity, index) => <article className="offer-card" key={activity.name}>
+            <div className="offer-image"><Image src={imagePath(activity.image)} alt={`${activity.name} experience in and around Dandeli`} width={1280} height={960} loading={index > 1 ? 'lazy' : 'eager'} /><span>{String(index + 1).padStart(2, '0')}</span></div>
+            <div className="offer-copy"><p className="price">{activity.price}</p><h3>{activity.name}</h3><p>{activity.summary}</p><small>{activity.note}</small><a href={`${business.whatsapp}?text=${encodeURIComponent(`Hello Dandeli Expedition, I would like the current price and availability for ${activity.name}.`)}`} target="_blank" rel="noreferrer">Check availability <ArrowUpRight size={15} /></a></div>
+          </article>)}
+        </div>
+        <aside className="specialist-strip"><div><span>FOR EXPERIENCED OR SEASONAL TRIPS</span><h3>Three outings to ask about</h3></div>{specialistActivities.map(item => <div key={item.name}><strong>{item.name}</strong><p>{item.detail}</p></div>)}</aside>
+      </section>
+
+      <section className="tagline-block" aria-label="Dandeli Expedition promise"><p>One trip can hold a quiet river morning,<br />a hard earned forest view and a good night&apos;s sleep.</p></section>
+
+      <section className="section stays" id="stays">
+        <div className="section-heading"><div><div className="eyebrow">HANDPICKED STAYS</div><h2>Six places to start<br /><em>your stay search.</em></h2></div><p>Prices are shown exactly as starting rates. Ask what is included before booking.</p></div>
+        <div className="stay-list">
+          {stays.map((stay, index) => <article className="stay-row" key={stay.name}>
+            <span className="stay-index">0{index + 1}</span><Image src={imagePath(stay.image)} alt={`Representative Dandeli landscape for ${stay.name}`} width={640} height={480} loading="lazy" /><h3>{stay.name}</h3><p>{stay.price}</p><a href={`${business.whatsapp}?text=${encodeURIComponent(`Hello Dandeli Expedition, please share current room photos, inclusions and availability for ${stay.name}.`)}`} target="_blank" rel="noreferrer" aria-label={`Ask about ${stay.name}`}><ArrowUpRight /></a>
+          </article>)}
+        </div>
+        <p className="content-note">The existing site names these properties and starting prices but does not publish full room inclusions. Ask for current room photos, meal plans, occupancy and cancellation terms.</p>
+      </section>
+
+      <div id="around"><AroundDandeli /></div>
+
+      <section className="section process">
+        <div className="eyebrow">A SIMPLE WAY TO PLAN</div><h2>Three messages are usually enough<br /><em>to get the right shortlist.</em></h2>
+        <ol><li><span>01</span><div><h3>Send your dates</h3><p>Include the number of adults and children, how many nights you need and your room preference.</p></div></li><li><span>02</span><div><h3>Choose your pace</h3><p>Tell the team whether you want rafting and activities, a quieter forest stay or a mix of both.</p></div></li><li><span>03</span><div><h3>Confirm the details</h3><p>Check the current price, inclusions, transport, safety requirements and payment or cancellation terms before booking.</p></div></li></ol>
+      </section>
+
+      <section className="section faq" id="questions">
+        <div><div className="eyebrow">TRIP QUESTIONS</div><h2>Useful answers<br /><em>before you book.</em></h2><p>These answers are based on the information published on the existing Dandeli Expedition website.</p></div>
+        <div>{faqItems.map(item => <details key={item.question}><summary>{item.question}<span>+</span></summary><p>{item.answer}</p></details>)}</div>
+      </section>
+
+      <section className="plan section" id="plan">
+        <div className="eyebrow">START WITH YOUR DATES</div><h2>Tell us who is coming.<br /><em>We will help shape the trip.</em></h2><p>Send your group size, travel dates, stay budget and the activities you want to try.</p>
+        <div className="plan-actions"><a className="cta" href={business.whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={18} /> Plan on WhatsApp <ArrowUpRight size={18} /></a><a className="contact-link" href={`tel:${business.phonePrimaryHref}`}><Phone size={17} /> {business.phonePrimary}</a></div>
+      </section>
+    </main>
+
+    <footer>
+      <div className="footer-main"><a href="#top" className="brand"><span className="brand-logo"><Image src={imagePath('/images/dandeli-expedition-logo.jpeg')} alt="Dandeli Expedition" width={1080} height={1080} loading="lazy" /></span></a><p>Stays, river activities and local trip planning from Dandeli.</p><div><span>COME FIND US</span><a href={business.map} target="_blank" rel="noreferrer">{business.address} 📍</a></div><div><span>LET&apos;S TALK</span><a href={`tel:${business.phonePrimaryHref}`}>{business.phonePrimary}</a><a href={`tel:${business.phoneSecondaryHref}`}>{business.phoneSecondary}</a><a href={`mailto:${business.email}`}>{business.email}</a></div></div>
+      <div className="footer-bottom"><span>© {new Date().getFullYear()} Dandeli Expedition</span><span>Prices and availability must be reconfirmed.</span><a href="#top">Back to top ↑</a></div>
+    </footer>
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+  </>;
+}
 

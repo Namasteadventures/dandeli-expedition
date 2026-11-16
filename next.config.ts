@@ -6,7 +6,7 @@ const isUserOrOrganizationSite = githubRepository.toLowerCase() === `${githubOwn
 const basePath = isGitHubPagesBuild && !isUserOrOrganizationSite ? `/${githubRepository}` : '';
 const siteUrl = isGitHubPagesBuild
   ? `https://${githubOwner.toLowerCase()}.github.io${basePath}`
-  : 'https://dandeli-expedition.offbeatdandeli.chatgpt.site';
+  : 'https://dandeliexpedition.com';
 
 const nextConfig: NextConfig = {
   output: 'export',
