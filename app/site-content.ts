@@ -1,10 +1,25 @@
 export const stays = [
-  { name: 'Hillstone Jungle Stay', price: '₹1,399 onwards', image: '/images/hero.webp' },
-  { name: 'Century Resort', price: '₹1,800 onwards', image: '/images/around-campus/hornbill-river-resort.webp' },
-  { name: 'Starling River Resort', price: '₹2,200 onwards', image: '/images/around-campus/backwaters-5.webp' },
-  { name: 'Parampara Cottages', price: '₹1,750 onwards', image: '/images/around-campus/kumbarwada-2.webp' },
-  { name: 'Wild Wings', price: '₹1,450 onwards', image: '/images/around-campus/safari-1.webp' },
-  { name: 'Verdant Cottages', price: '₹1,500 onwards', image: '/images/around-campus/moulangi-5.webp' },
+  {
+    name: 'Jungle Edge Resort',
+    description: 'A leafy resort with distinctive A-frame cottages, spacious cottage rooms and a full set of group-friendly leisure spaces.',
+    roomTypes: ['A-shape cottages', 'Deluxe cottages', 'Premium cottages'],
+    amenities: ['Unlimited buffet', 'Swimming pool', 'Rain dance', 'Campfire', 'Dining area'],
+    images: ['/images/stays/jungle-edge-aerial.webp', '/images/stays/jungle-edge-cottages.webp', '/images/stays/jungle-edge-pool.webp'],
+  },
+  {
+    name: 'Nadi Teera Cottages',
+    description: 'A cottage retreat framed by forested hills, with landscaped grounds and room choices ranging from premium cottages to commando-style stays.',
+    roomTypes: ['Premium cottages', 'Deluxe cottages', 'Commando cottages'],
+    amenities: ['Unlimited buffet', 'Swimming pool', 'Bonfire', 'Landscaped grounds'],
+    images: ['/images/stays/nadi-teera-aerial.webp', '/images/stays/nadi-teera-cottages.webp', '/images/stays/nadi-teera-pool.webp'],
+  },
+  {
+    name: 'River Point Resort',
+    description: 'A riverside resort with flexible rooms for couples, families and groups, plus generous outdoor areas for unwinding between adventures.',
+    roomTypes: ['Deluxe rooms', '2-person rooms', '4-person rooms', 'Group rooms'],
+    amenities: ['Swimming pool', 'Dining spaces', 'Garden seating', 'Rain dance', 'River views'],
+    images: ['/images/stays/river-point-aerial.webp', '/images/stays/river-point-room.webp', '/images/stays/river-point-river.webp'],
+  },
 ] as const;
 
 export const bookableActivities = [
@@ -73,7 +88,7 @@ export const faqItems = [
   },
   {
     question: 'Are the published stay prices final?',
-    answer: 'No. The listed amounts are starting prices from the existing website. Dates, room type, group size, meals, holidays and availability can change the final quote.',
+    answer: 'No. Stay prices are shared on request because dates, room type, group size, meal plan, holidays and availability can change the final quote.',
   },
   {
     question: 'Can the team help with local transport?',
@@ -95,4 +110,5 @@ export const business = {
   address: 'Near Shantadurga Hotel, K.C. Circle, Dandeli, Karnataka 581325, India',
   map: 'https://www.google.com/maps/search/?api=1&query=Dandeli+Expedition+Near+Shantadurga+Hotel+K+C+Circle+Dandeli',
   whatsapp: 'https://wa.me/918050171306',
+  instagram: 'https://instagram.com/dandeli.expedition',
 } as const;

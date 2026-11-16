@@ -53,7 +53,7 @@ export default function Home() {
             <a href="#activities" className="text-link">See activities <ArrowDown size={16} /></a>
           </div>
           <div className="hero-proof" aria-label="Trip planning highlights">
-            <span><strong>6</strong> stays listed</span>
+            <span><strong>3</strong> featured stays</span>
             <span><strong>9</strong> activities</span>
             <span><strong>K.C. Circle</strong> local office</span>
           </div>
@@ -68,7 +68,7 @@ export default function Home() {
         <div className="eyebrow">ONE LOCAL CONTACT FOR THE WHOLE PLAN</div>
         <div className="source-intro-grid">
           <h2>Less time comparing tabs.<br /><em>More time outside.</em></h2>
-          <div><p>Dandeli Expedition brings accommodation, outdoor activities, local guidance and transport help into one conversation. The rates below come from the existing website and are shown as starting prices.</p><p>River conditions, holidays, room availability and group size can change the final quote. Ask the team to confirm everything before you travel.</p></div>
+          <div><p>Dandeli Expedition brings accommodation, outdoor activities, local guidance and transport help into one conversation.</p><p>River conditions, holidays, room availability and group size can change the final quote. Ask the team to confirm everything before you travel.</p></div>
         </div>
       </section>
 
@@ -86,13 +86,27 @@ export default function Home() {
       <section className="tagline-block" aria-label="Dandeli Expedition promise"><p>One trip can hold a quiet river morning,<br />a hard earned forest view and a good night&apos;s sleep.</p></section>
 
       <section className="section stays" id="stays">
-        <div className="section-heading"><div><div className="eyebrow">HANDPICKED STAYS</div><h2>Six places to start<br /><em>your stay search.</em></h2></div><p>Prices are shown exactly as starting rates. Ask what is included before booking.</p></div>
-        <div className="stay-list">
-          {stays.map((stay, index) => <article className="stay-row" key={stay.name}>
-            <span className="stay-index">0{index + 1}</span><Image src={imagePath(stay.image)} alt={`Representative Dandeli landscape for ${stay.name}`} width={640} height={480} loading="lazy" /><h3>{stay.name}</h3><p>{stay.price}</p><a href={`${business.whatsapp}?text=${encodeURIComponent(`Hello Dandeli Expedition, please share current room photos, inclusions and availability for ${stay.name}.`)}`} target="_blank" rel="noreferrer" aria-label={`Ask about ${stay.name}`}><ArrowUpRight /></a>
+        <div className="section-heading"><div><div className="eyebrow">FEATURED STAYS</div><h2>Three distinctive stays.<br /><em>One local booking team.</em></h2></div><p>Explore the room styles and on-site facilities, then ask us for a live quote for your dates.</p></div>
+        <div className="stay-grid">
+          {stays.map((stay, index) => <article className="stay-card" key={stay.name}>
+            <div className="stay-gallery">
+              <Image className="stay-main-image" src={imagePath(stay.images[0])} alt={`${stay.name} property view`} width={1280} height={960} loading="lazy" />
+              <div className="stay-thumbnails">
+                <Image src={imagePath(stay.images[1])} alt={`${stay.name} accommodation`} width={640} height={480} loading="lazy" />
+                <Image src={imagePath(stay.images[2])} alt={`${stay.name} amenity`} width={640} height={480} loading="lazy" />
+              </div>
+              <span className="stay-index">{String(index + 1).padStart(2, '0')}</span>
+            </div>
+            <div className="stay-copy">
+              <p className="stay-kicker">Price on request</p>
+              <h3>{stay.name}</h3>
+              <p>{stay.description}</p>
+              <div className="stay-details"><div><strong>Room choices</strong><ul>{stay.roomTypes.map(item => <li key={item}>{item}</li>)}</ul></div><div><strong>At the property</strong><ul>{stay.amenities.map(item => <li key={item}>{item}</li>)}</ul></div></div>
+              <a href={`${business.whatsapp}?text=${encodeURIComponent(`Hello Dandeli Expedition, please share the current price, room photos, inclusions and availability for ${stay.name}.`)}`} target="_blank" rel="noreferrer">Get a quote for {stay.name} <ArrowUpRight size={18} /></a>
+            </div>
           </article>)}
         </div>
-        <p className="content-note">The existing site names these properties and starting prices but does not publish full room inclusions. Ask for current room photos, meal plans, occupancy and cancellation terms.</p>
+        <aside className="stay-terms"><div><span>STAY POLICY</span><strong>Children under the stated age stay free</strong></div><p><b>Children:</b> Ages 3 and below are free. Rates for older children and extra occupants depend on the selected room and package.</p><p><b>Before paying:</b> Confirm the current room, meal plan, occupancy, activity inclusions, holiday supplements and cancellation terms.</p></aside>
       </section>
 
       <div id="around"><AroundDandeli /></div>
@@ -114,7 +128,7 @@ export default function Home() {
     </main>
 
     <footer>
-      <div className="footer-main"><a href="#top" className="brand"><span className="brand-logo"><Image src={imagePath('/images/dandeli-expedition-logo.jpeg')} alt="Dandeli Expedition" width={1080} height={1080} loading="lazy" /></span></a><p>Stays, river activities and local trip planning from Dandeli.</p><div><span>COME FIND US</span><a href={business.map} target="_blank" rel="noreferrer">{business.address} 📍</a></div><div><span>LET&apos;S TALK</span><a href={`tel:${business.phonePrimaryHref}`}>{business.phonePrimary}</a><a href={`tel:${business.phoneSecondaryHref}`}>{business.phoneSecondary}</a><a href={`mailto:${business.email}`}>{business.email}</a></div></div>
+      <div className="footer-main"><a href="#top" className="brand"><span className="brand-logo"><Image src={imagePath('/images/dandeli-expedition-logo.jpeg')} alt="Dandeli Expedition" width={1080} height={1080} loading="lazy" /></span></a><p>Stays, river activities and local trip planning from Dandeli.</p><div><span>COME FIND US</span><a href={business.map} target="_blank" rel="noreferrer">{business.address} 📍</a><a href={business.instagram} target="_blank" rel="noreferrer">Follow @dandeli.expedition on Instagram</a></div><div><span>LET&apos;S TALK</span><a href={`tel:${business.phonePrimaryHref}`}>{business.phonePrimary}</a><a href={`tel:${business.phoneSecondaryHref}`}>{business.phoneSecondary}</a><a href={`mailto:${business.email}`}>{business.email}</a></div></div>
       <div className="footer-bottom"><span>© {new Date().getFullYear()} Dandeli Expedition</span><span>Prices and availability must be reconfirmed.</span><a href="#top">Back to top ↑</a></div>
     </footer>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />

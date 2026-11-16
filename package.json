@@ -1,5 +1,5 @@
 {
-  "name": "sites-project",
+  "name": "dandeli-expedition",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -9,6 +9,8 @@
     "dev": "vinext dev",
     "build": "vinext build",
     "start": "wrangler dev --config dist/server/wrangler.json",
+    "deploy": "pnpm run build && wrangler deploy --config dist/server/wrangler.json",
+    "deploy:dry-run": "pnpm run build && wrangler deploy --dry-run --config dist/server/wrangler.json",
     "lint": "oxlint",
     "format": "oxfmt"
   },
