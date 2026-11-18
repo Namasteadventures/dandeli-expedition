@@ -148,7 +148,7 @@ export function SitePage({ page, children }: { page: 'activities' | 'stays' | 'p
       </section>
     </main>
 
-    <FloatingContact />
+    {!isPlan ? <FloatingContact /> : null}
 
     <footer>
       <div className="footer-main">
