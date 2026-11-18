@@ -4,8 +4,6 @@ import { useEffect, useState, type ReactNode } from 'react';
 import Image from 'next/image';
 import { ArrowUpRight, Mail, MapPin, Menu, MessageCircle, Phone, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { TripPlannerForm } from '@/components/trip-planner-form';
 import { business } from './site-content';
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
@@ -58,8 +56,9 @@ function FloatingContact() {
   </aside>;
 }
 
-export function SitePage({ page, children }: { page: 'activities' | 'stays'; children: ReactNode }) {
+export function SitePage({ page, children }: { page: 'activities' | 'stays' | 'plan'; children: ReactNode }) {
   const isStays = page === 'stays';
+  const isPlan = page === 'plan';
   const [menu, setMenu] = useState(false);
   const structuredData = {
     '@context': 'https://schema.org',
@@ -86,26 +85,23 @@ export function SitePage({ page, children }: { page: 'activities' | 'stays'; chi
       </a>
       <nav className={menu ? 'navigation open' : 'navigation'} aria-label="Main navigation">
         {[
-          ['Activities', isStays ? `${basePath}/#activities` : '#activities'],
-          ['Around Dandeli', isStays ? `${basePath}/#around` : '#around'],
+          ['Activities', isStays || isPlan ? `${basePath}/#activities` : '#activities'],
+          ['Around Dandeli', isStays || isPlan ? `${basePath}/#around` : '#around'],
           ['Stays', isStays ? '#stays' : `${basePath}/stays/#stays`],
           ['Trip questions', isStays ? '#questions' : `${basePath}/stays/#questions`],
           ['Contact', '#contact'],
         ].map(([name, href]) => <a key={name} href={href} onClick={() => setMenu(false)}>{name}</a>)}
       </nav>
-      <Dialog>
-        <DialogTrigger className="cta header-cta" onClick={() => setMenu(false)}>Plan my trip <ArrowUpRight size={16} /></DialogTrigger>
-        <DialogContent className="trip-planner-dialog">
-          <DialogTitle className="trip-planner-title">Plan my trip</DialogTitle>
-          <DialogDescription>Four simple steps to your Dandeli shortlist.</DialogDescription>
-          <TripPlannerForm />
-        </DialogContent>
-      </Dialog>
+      <a className="cta header-cta" href={`${basePath}/plan/`} onClick={() => setMenu(false)}>Plan my trip <ArrowUpRight size={16} /></a>
       <Button className="mobile-toggle" variant="ghost" aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? <X /> : <Menu />}</Button>
     </header>
 
     <main id="main-content">
-      <section className="hero hero-split">
+      {isPlan ? <section className="plan-page-hero">
+        <div className="eyebrow"><span /> SHAREABLE TRIP PLANNER</div>
+        <h1>Build your Dandeli trip.<br /><em>Share the plan.</em></h1>
+        <p>Choose your dates, stay and activities. Submit the form and the local team will continue with you on WhatsApp.</p>
+      </section> : <><section className="hero hero-split">
         <div className="hero-copy">
           <div className="eyebrow"><span /> {isStays ? 'DANDELI STAYS AND TRIP PLANNING' : 'DANDELI ACTIVITIES AND DAY TRIPS'}</div>
           <h1>{isStays ? 'Stay in Dandeli.' : 'Explore Dandeli.'}<br /><em>{isStays ? 'Rest close to adventure.' : 'Adventure farther.'}</em></h1>
@@ -133,6 +129,7 @@ export function SitePage({ page, children }: { page: 'activities' | 'stays'; chi
           <div><p>We bring accommodation, outdoor activities, local guidance and transport help into one conversation.</p><p>River conditions, holidays, room availability and group size can change the final quote. Ask us to confirm everything before you travel.</p></div>
         </div>
       </section>
+      </>}
 
       {children}
 
