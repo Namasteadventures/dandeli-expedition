@@ -1,10 +1,11 @@
 import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [{
-    url: 'https://dandeliexpedition.com/',
+  const origin = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://dandeliexpedition.com';
+  return ['', '/stays'].map(path => ({
+    url: origin + path + '/',
     lastModified: new Date(),
     changeFrequency: 'weekly',
-    priority: 1,
-  }];
+    priority: path ? 0.9 : 1,
+  }));
 }
