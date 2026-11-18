@@ -9,7 +9,8 @@ const siteUrl = isGitHubPagesBuild
   : 'https://dandeliexpedition.com';
 
 const nextConfig: NextConfig = {
-  output: 'export',
+  // The enquiry API requires a server runtime; keep static export only for Pages.
+  ...(isGitHubPagesBuild ? { output: 'export' as const } : {}),
   trailingSlash: true,
   assetPrefix: basePath || undefined,
   env: {

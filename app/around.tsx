@@ -1,11 +1,12 @@
 'use client';
 
-import { type ReactNode, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { ArrowLeft, ArrowRight, ArrowUpRight, MapPin, Share2, Expand, Copy, MessageCircle } from 'lucide-react';
+import { ArrowUpRight, MapPin, Share2, Expand, Copy, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
+import { HorizontalCardRail } from '@/components/horizontal-card-rail';
 import places from './around-data.json';
 
 type Place = (typeof places)[number];
@@ -15,26 +16,6 @@ const imagePath = (path: string) => `${basePath}${path}`;
 function driveMinutes(place: Place) {
   const driveTime = place.facts.find(fact => fact.startsWith('Drive time from Dandeli:'));
   return driveTime ? Number.parseInt(driveTime.match(/\d+/)?.[0] ?? '999', 10) : 999;
-}
-
-function AdventureRail({ label, children }: { label: string; children: ReactNode }) {
-  const rail = useRef<HTMLElement>(null);
-  const move = (direction: -1 | 1) => {
-    if (!rail.current) return;
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    rail.current.scrollBy({
-      left: direction * rail.current.clientWidth * 0.88,
-      behavior: reducedMotion ? 'auto' : 'smooth',
-    });
-  };
-
-  return <div className="experience-rail-shell">
-    <div className="experience-rail-controls" aria-label={`${label} slide controls`}>
-      <button type="button" onClick={() => move(-1)} aria-label={`Show previous ${label.toLowerCase()}`}><ArrowLeft size={18} /></button>
-      <button type="button" onClick={() => move(1)} aria-label={`Show next ${label.toLowerCase()}`}><ArrowRight size={18} /></button>
-    </div>
-    <section ref={rail} className="experience-rail" aria-label={`${label}, arranged from left to right`}>{children}</section>
-  </div>;
 }
 
 function Gallery({ place, initial = 0, expanded = false, onExpand }: { place: Place; initial?: number; expanded?: boolean; onExpand?: (index: number) => void }) {
@@ -120,7 +101,7 @@ export function AroundDandeli() {
       </article>);
       return <div className={`experience-group experience-group-${group.toLowerCase().replace(' ', '-')}`} key={group}>
         <h3 className="experience-group-title">{groupTitle}</h3>
-        {group === 'Transport' ? <div className="activity-grid destination-grid transport-grid">{cards}</div> : <AdventureRail label={groupTitle}>{cards}</AdventureRail>}
+        <HorizontalCardRail label={groupTitle} className={group === 'Transport' ? 'transport-rail' : ''}>{cards}</HorizontalCardRail>
       </div>;
     })}
     <aside className="before-you-go"><h3>Before you book</h3><ul className="experience-notes"><li>Guided rates may include a local guide. Confirm the guide arrangement for your booking.</li><li>Group minimums apply to the rates that include transport.</li><li>The published rates are estimates and may increase for holidays or long weekends.</li><li>Permits, guides and transport require advance booking.</li><li>Heavy monsoon conditions can suspend some activities.</li><li>For an independent visit, use the map links and arrange your own vehicle or cab.</li></ul></aside>

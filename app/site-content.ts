@@ -45,30 +45,30 @@ export const bookableActivities = [
   {
     name: 'Zipline',
     price: '₹350 per person onwards',
-    image: '/images/around-campus/20251012_140922.webp',
+    image: '/images/activities/zipline.png',
     summary: 'Cross a suspended cable with trained operators, safety equipment and views across the river and forest.',
     note: 'Course length and availability vary. Guests must be over 12 and suitably fit.',
   },
   {
     name: 'Boating',
     price: '₹100 per person onwards',
-    image: '/images/around-campus/backwaters-2.webp',
+    image: '/images/activities/boating.png',
     summary: 'Take a slower look at Dandeli from the water, with the possibility of seeing crocodiles and birdlife along the way.',
     note: 'Boat type and route depend on conditions and the operator.',
   },
   {
     name: 'Water zorbing',
     price: '₹350 per person onwards',
-    image: '/images/around-campus/hornbill-2.webp',
+    image: '/images/activities/water-zorbing.png',
     summary: 'Roll across the water inside a large inflatable ball at the Kali River activity area.',
     note: 'Duration, group size and current conditions can affect the final price.',
   },
   {
-    name: 'Go-karting',
+    name: 'Sky cycling',
     price: '₹300 per person onwards',
-    image: '/images/around-campus/moulangi-9.webp',
-    summary: 'Add a short driving session to the day for a change of pace from the river activities.',
-    note: 'Ask us to confirm the current track schedule and price.',
+    image: '/images/activities/sky-cycling.png',
+    summary: 'Pedal along an elevated cable course with a safety harness and wide-open views over the activity area.',
+    note: 'Age, height and weight restrictions may apply. Ask us to confirm the current schedule and price.',
   },
 ] as const;
 
@@ -81,7 +81,7 @@ export const specialistActivities = [
 export const faqItems = [
   {
     question: 'What can I book through Dandeli Expedition?',
-    answer: 'We can help you arrange accommodation, rafting, kayaking, ziplining, boating, water zorbing, go-karting and selected guided outings around Dandeli. Availability depends on the season, river conditions and operator schedules.',
+    answer: 'We can help you arrange accommodation, rafting, kayaking, ziplining, boating, water zorbing, sky cycling and selected guided outings around Dandeli. Availability depends on the season, river conditions and operator schedules.',
   },
   {
     question: 'How much does rafting in Dandeli cost?',
@@ -109,11 +109,11 @@ export const business = {
   name: 'Dandeli Expedition',
   phonePrimary: '+91 80501 71306',
   phonePrimaryHref: '+918050171306',
-  phoneSecondary: '+91 63630 66331',
-  phoneSecondaryHref: '+916363066331',
-  email: 'info@expeditiondandeli.com',
+  email: 'contact@dandeliexpedition.com',
   address: 'Near Shantadurga Hotel, K.C. Circle, Dandeli, Karnataka 581325, India',
   map: 'https://www.google.com/maps/search/?api=1&query=Dandeli+Expedition+Near+Shantadurga+Hotel+K+C+Circle+Dandeli',
   whatsapp: 'https://wa.me/918050171306',
-  instagram: 'https://instagram.com/dandeli.expedition',
+  instagram: 'https://www.instagram.com/dandeli.expedition',
+  youtube: 'https://youtube.com/@dandeliexpedition',
+  x: 'https://x.com/Dandeliexped',
 } as const;
