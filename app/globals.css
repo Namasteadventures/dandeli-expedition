@@ -256,7 +256,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline-color:#f2510d
 .experience-rail-controls button{display:grid;place-items:center;width:44px;height:44px;border:1px solid #373737;border-radius:8px;background:#111;color:#f2510d;cursor:pointer;transition:background .2s,transform .2s,border-color .2s}
 .experience-rail-controls button:hover{background:#1d1d1d;border-color:#5b5b5b;transform:translateY(-1px)}
 .experience-rail-controls button:active{transform:scale(.98)}
-.experience-rail{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;padding:4px 4px 18px;scroll-padding-inline:4px;scroll-snap-type:x mandatory;scrollbar-color:#f2510d #171717;scrollbar-width:thin}
+.experience-rail{display:flex;gap:20px;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;padding:4px 4px 18px;scroll-padding-inline:4px;scroll-snap-type:x mandatory;scrollbar-color:#f2510d #171717;scrollbar-width:thin}
 .experience-rail .experience-card{display:flex;flex:0 0 clamp(330px,38vw,446px);flex-direction:column;scroll-snap-align:start;scroll-snap-stop:always}
 .experience-rail .experience-card .card-body{display:flex;flex:1;flex-direction:column}
 .experience-rail .experience-card .experience-enquire{margin-top:auto;padding-top:18px}
@@ -264,7 +264,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline-color:#f2510d
 .offer-rail .offer-card{flex:0 0 min(820px,76vw);scroll-snap-align:start;scroll-snap-stop:always}
 .transport-rail .experience-card{flex-basis:clamp(330px,38vw,446px)}
 @media(max-width:950px){.experience-rail .experience-card{flex-basis:min(72vw,430px)}.offer-rail .offer-card{flex-basis:min(760px,84vw)}}
-@media(max-width:700px){.experience-rail-shell{margin-right:-20px}.experience-rail-controls{padding-right:20px}.experience-rail{gap:14px;padding-right:20px}.experience-rail .experience-card{flex-basis:calc(100vw - 64px)}.offer-rail{margin-top:24px}.offer-rail .offer-card{flex-basis:calc(100vw - 64px)}.experience-rail-controls button{width:40px;height:40px}}
+@media(max-width:700px){html,body{overflow-x:clip}.experience-rail-shell{margin-right:-22px}.experience-rail-controls{padding-right:22px}.experience-rail{gap:14px;padding-right:22px;scroll-snap-type:x proximity}.experience-rail .experience-card{flex-basis:calc(100vw - 66px);scroll-snap-stop:normal}.offer-rail{margin-top:24px}.offer-rail .offer-card{flex-basis:calc(100vw - 66px);scroll-snap-stop:normal}.experience-rail-controls button{width:40px;height:40px}.experience-gallery [data-slot="carousel-content"]{touch-action:pan-y pinch-zoom}.experience-gallery button{touch-action:manipulation}.planner-step{scroll-margin-top:20px}}
 
 /* Minimal contact system: three primary actions, compact social icons and a floating quick-contact tile. */
 .contact-section{display:grid;grid-template-columns:minmax(0,.82fr) minmax(440px,1.18fr);gap:clamp(58px,8vw,118px);align-items:start;border-top:1px solid #252525;border-bottom:1px solid #252525;background:#050505}

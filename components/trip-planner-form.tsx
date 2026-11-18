@@ -16,12 +16,30 @@ export function TripPlannerForm() {
   const [sending, setSending] = useState(false);
   const [whatsappUrl, setWhatsappUrl] = useState<string>(business.whatsapp);
   const formRef = useRef<HTMLFormElement>(null);
+  const hasStarted = useRef(false);
   const busy = useRef(false);
   const requestId = useRef('');
   const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
 
   useEffect(() => {
-    formRef.current?.querySelector<HTMLElement>(`[data-step="${step}"] h3`)?.focus();
+    if (!hasStarted.current) {
+      hasStarted.current = true;
+      return;
+    }
+
+    const activeStep = formRef.current?.querySelector<HTMLElement>(`[data-step="${step}"]`);
+    const heading = activeStep?.querySelector<HTMLElement>('h3');
+    if (!activeStep || !heading) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      heading.focus({ preventScroll: true });
+      activeStep.scrollIntoView({
+        block: 'start',
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
   }, [step]);
 
   function toggle(item: string, type: 'stay' | 'activity') {
