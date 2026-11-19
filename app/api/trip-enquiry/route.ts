@@ -93,7 +93,7 @@ export async function POST(request: Request) {
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST', headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, 'Content-Type': 'application/json', 'Idempotency-Key': `trip-${digest}` },
-      body: JSON.stringify({ from: env.ENQUIRY_EMAIL_FROM, to: [business.email], subject: `Trip enquiry: ${enquiry.name} — ${enquiry.arrival}`, text: message, ...(enquiry.email ? { reply_to: enquiry.email } : {}) }),
+      body: JSON.stringify({ from: env.ENQUIRY_EMAIL_FROM, to: [env.ENQUIRY_EMAIL_TO || business.email], subject: `Trip enquiry: ${enquiry.name} — ${enquiry.arrival}`, text: message, ...(enquiry.email ? { reply_to: enquiry.email } : {}) }),
       signal: AbortSignal.timeout(15000),
     });
     const result = await response.json() as { id?: string };
