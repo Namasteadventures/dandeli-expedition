@@ -1,4 +1,4 @@
-import { bookableActivities, business, stays } from '@/app/site-content';
+import { bookableActivities, business } from '@/app/site-content';
 
 const json = (body: object, status = 200) => Response.json(body, { status, headers: { 'Cache-Control': 'no-store' } });
 const encoder = new TextEncoder();
@@ -35,17 +35,15 @@ function parseEnquiry(value: unknown) {
   if (!/^[+0-9 ()-]+$/.test(whatsapp) || !/^\d{10,15}$/.test(whatsapp.replace(/\D/g, ''))) throw new Error('Please enter a valid WhatsApp number.');
   const email = text('email', 120);
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('Please check your email address.');
-  const selectedStays = selection('stays', stays.map(stay => stay.name));
   const activities = selection('activities', bookableActivities.map(activity => activity.name));
-  if (!selectedStays.length && !activities.length) throw new Error('Choose at least one stay or activity.');
   const requestId = text('requestId', 36, true);
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(requestId)) throw new Error('Please reopen the planner and try again.');
   if (typeof input.flexibleDates !== 'boolean') throw new Error('Please check your dates.');
   return {
     requestId, arrival, nights: count('nights', 1, 30), adults: count('adults', 1, 50), children: count('children', 0, 30),
     flexibleDates: input.flexibleDates, pace: choice('pace', ['Relaxed and easy', 'A little of both', 'Packed with adventure']),
-    roomPreference: choice('roomPreference', ['Shared room', 'Private / non-sharing room', '8-sharing room']),
-    stays: selectedStays, activities, name: text('name', 80, true), whatsapp, email, origin: text('origin', 80),
+    roomPreference: choice('roomPreference', ['Sharing room', 'Private room/Non-sharing', '8-sharing room', 'Dormitory (15–20 sharing)']),
+    activities, name: text('name', 80, true), whatsapp, email, origin: text('origin', 80),
     transport: choice('transport', ['No transport needed', 'Pickup and drop needed', 'Please advise']), notes: text('notes', 400),
   };
 }
@@ -79,10 +77,9 @@ export async function POST(request: Request) {
   const values = [
     enquiry.name, enquiry.whatsapp, enquiry.email || 'Not provided', enquiry.origin || 'Not provided',
     `${enquiry.arrival}; ${enquiry.nights} nights; ${enquiry.adults} adults, ${enquiry.children} children; flexible dates: ${enquiry.flexibleDates ? 'yes' : 'no'}`,
-    `${enquiry.pace}; ${enquiry.roomPreference}`, enquiry.stays.join(', ') || 'No stay requested',
-    enquiry.activities.join(', ') || 'No activities requested', enquiry.transport, enquiry.notes || 'None',
+    `${enquiry.pace}; ${enquiry.roomPreference}`, enquiry.activities.join(', ') || 'No activities requested', enquiry.transport, enquiry.notes || 'None',
   ];
-  const labels = ['Name', 'WhatsApp', 'Email', 'Travelling from', 'Dates and guests', 'Pace and room', 'Stays', 'Activities', 'Transport', 'Other details'];
+  const labels = ['Name', 'WhatsApp', 'Email', 'Travelling from', 'Dates and guests', 'Pace and room', 'Activities', 'Transport', 'Other details'];
   const message = ['Hello Dandeli Expedition, I would like to plan this trip.', `Reference: ${enquiry.requestId}`, '', ...values.map((value, index) => `${labels[index]}: ${value}`), '', 'Please confirm availability, current prices, inclusions and payment terms.'].join('\n');
   const recipient = business.whatsapp.split('/').pop()!;
   const whatsappUrl = `${business.whatsapp}?text=${encodeURIComponent(message)}`;

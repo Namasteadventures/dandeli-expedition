@@ -100,7 +100,7 @@ export function SitePage({ page, children }: { page: 'activities' | 'stays' | 'p
       {isPlan ? <section className="plan-page-hero">
         <div className="eyebrow"><span /> SHAREABLE TRIP PLANNER</div>
         <h1>Build your Dandeli trip.<br /><em>Share the plan.</em></h1>
-        <p>Choose your dates, stay and activities. Submit the form and the local team will continue with you on WhatsApp.</p>
+        <p>Choose your dates, room type and activities. Submit the form and the local team will continue with you on WhatsApp.</p>
       </section> : <><section className="hero hero-split">
         <div className="hero-copy">
           <div className="eyebrow"><span /> {isStays ? 'DANDELI STAYS AND TRIP PLANNING' : 'DANDELI ACTIVITIES AND DAY TRIPS'}</div>

@@ -10,7 +10,7 @@ export function PlanContent() {
   async function sharePlan() {
     const shareData = {
       title: 'Plan your Dandeli trip',
-      text: 'Open this trip planner to choose dates, stays and activities for Dandeli.',
+      text: 'Open this trip planner to choose dates, a room type and activities for Dandeli.',
       url: window.location.href,
     };
 

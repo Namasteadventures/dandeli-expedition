@@ -2,14 +2,13 @@
 
 import { type SyntheticEvent, useEffect, useRef, useState } from 'react';
 import { Check, ChevronRight, Minus, Plus } from 'lucide-react';
-import { bookableActivities, business, stays } from '@/app/site-content';
+import { bookableActivities, business } from '@/app/site-content';
 
-const steps = ['Send your dates', 'Choose your pace and stay', 'Activities', 'Confirm the details'];
-const rooms = ['Shared room', 'Private / non-sharing room', '8-sharing room'];
+const steps = ['Send your dates', 'Choose your pace and room', 'Activities', 'Confirm the details'];
+const rooms = ['Sharing room', 'Private room/Non-sharing', '8-sharing room', 'Dormitory (15–20 sharing)'];
 
 export function TripPlannerForm() {
   const [step, setStep] = useState(0);
-  const [selectedStays, setSelectedStays] = useState<string[]>([]);
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
   const [review, setReview] = useState<Record<string, string>>({});
   const [error, setError] = useState('');
@@ -42,9 +41,8 @@ export function TripPlannerForm() {
     return () => window.cancelAnimationFrame(frame);
   }, [step]);
 
-  function toggle(item: string, type: 'stay' | 'activity') {
-    const setter = type === 'stay' ? setSelectedStays : setSelectedActivities;
-    setter(current => current.includes(item) ? current.filter(value => value !== item) : [...current, item]);
+  function toggleActivity(item: string) {
+    setSelectedActivities(current => current.includes(item) ? current.filter(value => value !== item) : [...current, item]);
     setError('');
   }
 
@@ -54,10 +52,6 @@ export function TripPlannerForm() {
     if (next > step) {
       for (const field of form.querySelectorAll<HTMLInputElement>(`[data-step="${step}"] input, [data-step="${step}"] select`)) {
         if (!field.reportValidity()) return;
-      }
-      if (step === 2 && !selectedStays.length && !selectedActivities.length) {
-        setError('Choose at least one stay or activity before continuing.');
-        return;
       }
     }
     setReview(Object.fromEntries([...new FormData(form)].map(([key, value]) => [key, typeof value === 'string' ? value : ''])));
@@ -79,7 +73,7 @@ export function TripPlannerForm() {
       }
     }
     const values = Object.fromEntries(new FormData(form));
-    const payload = { ...values, flexibleDates: values.flexibleDates === 'on', stays: selectedStays, activities: selectedActivities };
+    const payload = { ...values, flexibleDates: values.flexibleDates === 'on', activities: selectedActivities };
     requestId.current ||= crypto.randomUUID();
     busy.current = true;
     setSending(true);
@@ -115,22 +109,17 @@ export function TripPlannerForm() {
         </div>
       </section>
       <section className="planner-step" data-step="1" hidden={step !== 1} aria-labelledby="planner-stays-title">
-        <div className="planner-step-intro"><span>02</span><div><h3 tabIndex={-1} id="planner-stays-title">Choose your pace and stay</h3><p>Pick your ideal rhythm and shortlist stays. You can also plan an activities-only trip.</p></div></div>
+        <div className="planner-step-intro"><span>02</span><div><h3 tabIndex={-1} id="planner-stays-title">Choose your pace and room</h3><p>Pick your ideal rhythm and the room type that suits your group.</p></div></div>
         <div className="planner-catalogue">
           <label className="planner-field"><span>Your pace</span><select name="pace" defaultValue="A little of both" required><option>Relaxed and easy</option><option>A little of both</option><option>Packed with adventure</option></select></label>
           <fieldset className="planner-room-options"><legend>Room preference</legend>{rooms.map((room, index) => <label key={room}><input type="radio" name="roomPreference" value={room} defaultChecked={index === 1} required /><span>{room}</span></label>)}</fieldset>
-          <div className="planner-catalogue-heading"><h4>Stays</h4><span>{selectedStays.length} selected</span></div>
-          <div className="planner-choice-grid">{stays.map(stay => {
-            const selected = selectedStays.includes(stay.name);
-            return <button type="button" key={stay.name} className={`planner-choice${selected ? ' selected' : ''}`} aria-pressed={selected} onClick={() => toggle(stay.name, 'stay')}><span><strong>{stay.name}</strong><em>{stay.roomTypes.slice(0, 2).join(' · ')}</em></span><span className="planner-choice-action">{selected ? <Minus size={16} /> : <Plus size={16} />}<b>{selected ? 'Remove' : 'Add'}</b></span></button>;
-          })}</div>
         </div>
       </section>
       <section className="planner-step" data-step="2" hidden={step !== 2} aria-labelledby="planner-activities-title">
-        <div className="planner-step-intro"><span>03</span><div><h3 tabIndex={-1} id="planner-activities-title">Activities</h3><p>Add the experiences you would love to try. Continue without activities if you only need a stay.</p></div></div>
+        <div className="planner-step-intro"><span>03</span><div><h3 tabIndex={-1} id="planner-activities-title">Activities</h3><p>Add the experiences you would love to try. Continue without activities if you only need a room.</p></div></div>
         <div className="planner-catalogue"><div className="planner-catalogue-heading"><h4>Make it your adventure</h4><span>{selectedActivities.length} selected</span></div><div className="planner-choice-grid activity-choices">{bookableActivities.map(activity => {
           const selected = selectedActivities.includes(activity.name);
-          return <button type="button" key={activity.name} className={`planner-choice${selected ? ' selected' : ''}`} aria-pressed={selected} onClick={() => toggle(activity.name, 'activity')}><span><strong>{activity.name}</strong><em>{activity.price}</em></span><span className="planner-choice-action">{selected ? <Minus size={16} /> : <Plus size={16} />}<b>{selected ? 'Remove' : 'Add'}</b></span></button>;
+          return <button type="button" key={activity.name} className={`planner-choice${selected ? ' selected' : ''}`} aria-pressed={selected} onClick={() => toggleActivity(activity.name)}><span><strong>{activity.name}</strong><em>{activity.price}</em></span><span className="planner-choice-action">{selected ? <Minus size={16} /> : <Plus size={16} />}<b>{selected ? 'Remove' : 'Add'}</b></span></button>;
         })}</div></div>
       </section>
       <section className="planner-step" data-step="3" hidden={step !== 3} aria-labelledby="planner-confirm-title">
@@ -144,7 +133,7 @@ export function TripPlannerForm() {
             <label className="planner-field planner-field-wide"><span>Transport help</span><select name="transport" defaultValue="Please advise"><option>No transport needed</option><option>Pickup and drop needed</option><option>Please advise</option></select></label>
             <label className="planner-field planner-field-wide"><span>Anything else? <small>optional</small></span><textarea name="notes" maxLength={400} rows={3} placeholder="Children’s ages, dietary needs or questions" /></label>
           </div>
-          <aside className="planner-review"><span>YOUR TRIP</span><p>{review.arrival} · {review.nights} nights<br />{review.adults} adults · {review.children} children<br />{review.flexibleDates ? 'Flexible dates' : 'Fixed dates'}<br />{review.pace}<br />{review.roomPreference}</p><div className="planner-mini-cart"><span>Your shortlist</span><ul>{[...selectedStays, ...selectedActivities].map(item => <li key={item}>{item}</li>)}</ul></div><small>Submitting saves an email copy to {business.email}, then opens WhatsApp with the same details. Tap Send in WhatsApp to message the team.</small></aside>
+          <aside className="planner-review"><span>YOUR TRIP</span><p>{review.arrival} · {review.nights} nights<br />{review.adults} adults · {review.children} children<br />{review.flexibleDates ? 'Flexible dates' : 'Fixed dates'}<br />{review.pace}<br />{review.roomPreference}</p>{selectedActivities.length ? <div className="planner-mini-cart"><span>Your activities</span><ul>{selectedActivities.map(item => <li key={item}>{item}</li>)}</ul></div> : null}<small>Submitting saves an email copy to {business.email}, then opens WhatsApp with the same details. Tap Send in WhatsApp to message the team.</small></aside>
         </div>
       </section>
     </fieldset>

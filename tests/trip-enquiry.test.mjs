@@ -8,7 +8,7 @@ const source = transpile('../app/api/trip-enquiry/route.ts').replace(/import .* 
 const { POST } = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
 const input = {
   requestId: 'aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa', arrival: '2099-12-20', nights: '2', adults: '2', children: '0', flexibleDates: true,
-  pace: 'A little of both', roomPreference: 'Private / non-sharing room', stays: ['Jungle Edge Resort'], activities: ['Kayaking'],
+  pace: 'A little of both', roomPreference: 'Private room/Non-sharing', activities: ['Kayaking'],
   name: 'Test Traveller', whatsapp: '+91 99999 99999', email: 'traveller@example.com', origin: 'Bengaluru', transport: 'Please advise', notes: 'Test only',
 };
 const request = (body = input, origin = 'https://example.com') => new Request('https://example.com/api/trip-enquiry', { method: 'POST', headers: { 'Content-Type': 'application/json', Origin: origin }, body: JSON.stringify(body) });
@@ -26,11 +26,19 @@ test('trip enquiry validates, emails a copy and returns a prefilled WhatsApp URL
   process.env.ENQUIRY_EMAIL_FROM = 'Dandeli Expedition <enquiries@dandeliexpedition.com>';
   try {
     await t.test('rejects invalid data and cross-origin requests without email calls', async () => {
-      for (const bad of [{ adults: '0' }, { arrival: '2099-02-30' }, { arrival: '2000-01-01' }, { name: ' ' }, { whatsapp: '123' }, { stays: ['Unknown stay'] }, { stays: [], activities: [] }, { email: 'bad-email' }, { notes: 'x'.repeat(401) }]) {
+      for (const bad of [{ adults: '0' }, { arrival: '2099-02-30' }, { arrival: '2000-01-01' }, { name: ' ' }, { whatsapp: '123' }, { roomPreference: 'Unknown room' }, { email: 'bad-email' }, { notes: 'x'.repeat(401) }]) {
         assert.equal((await POST(request({ ...input, ...bad }))).status, 400);
       }
       assert.equal((await POST(request(input, 'https://other.example'))).status, 403);
       assert.equal(calls.length, 0);
+    });
+    await t.test('accepts a dormitory room enquiry without activities', async () => {
+      const response = await POST(request({ ...input, roomPreference: 'Dormitory (15–20 sharing)', activities: [] }));
+      assert.equal(response.status, 200);
+      const result = await response.json();
+      const draft = decodeURIComponent(new URL(result.whatsappUrl).searchParams.get('text'));
+      assert.match(draft, /Dormitory \(15–20 sharing\)/);
+      assert.match(draft, /No activities requested/);
     });
     await t.test('emails contact address and returns the complete WhatsApp draft', async () => {
       calls.length = 0;
@@ -45,7 +53,7 @@ test('trip enquiry validates, emails a copy and returns a prefilled WhatsApp URL
       assert.match(result.whatsappUrl, /^https:\/\/wa\.me\/918050171306\?text=/);
       const draft = decodeURIComponent(new URL(result.whatsappUrl).searchParams.get('text'));
       assert.match(draft, /Test Traveller/);
-      assert.match(draft, /Jungle Edge Resort/);
+      assert.match(draft, /Private room\/Non-sharing/);
       assert.match(draft, /Kayaking/);
     });
     await t.test('missing configuration and email failure preserve the WhatsApp draft', async () => {
